@@ -59,6 +59,7 @@ class LinkedList {
       while (currentNode.next) {
         if (currentNode.data === data) {
           isValueRepeated = true;
+          this.length--;
           break;
         }
         currentNode = currentNode.next;
