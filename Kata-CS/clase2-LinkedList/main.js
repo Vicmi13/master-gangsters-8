@@ -24,6 +24,7 @@
 class LinkedList {
   constructor() {
     this.head = null;
+    this.length = 0;
   }
 
   addElement(data) {
@@ -45,6 +46,28 @@ class LinkedList {
       // add node
       currentNode.next = node;
     }
+    this.length++;
+  }
+
+  recoverSizeList() {
+    return `El tamaño es ${this.length}`;
+  }
+
+  removeElement(data) {
+    let currentNode = this.head;
+    let previousNode;
+    if (currentNode.data == data) {
+      // si el elemento a borrar es el primero
+      this.head = currentNode.next;
+    } else {
+      while (currentNode.data !== data) {
+        previousNode = currentNode;
+        currentNode = previousNode.next;
+      }
+      previousNode.next = currentNode.next;
+    }
+
+    this.length--;
   }
 }
 
@@ -67,7 +90,14 @@ class Node {
 
 const linkedList = new LinkedList();
 linkedList.addElement(20);
+1;
 linkedList.addElement(33);
 linkedList.addElement(14);
+linkedList.addElement(65);
+linkedList.addElement(81);
 
+linkedList.removeElement(14);
+linkedList.removeElement(81);
 console.log(linkedList);
+
+console.log(linkedList.recoverSizeList());
