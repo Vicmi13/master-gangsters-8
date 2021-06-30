@@ -48,6 +48,29 @@ class LinkedList {
     }
     this.length++;
   }
+  addElementNotRepeated(data) {
+    const node = new Node(data); // creamos instancia de Node
+    if (this.head === null) {
+      // validamos si es primer elemento
+      this.head = node;
+    } else {
+      let currentNode = this.head;
+      let isValueRepeated = false;
+      while (currentNode.next) {
+        if (currentNode.data === data) {
+          isValueRepeated = true;
+          break;
+        }
+        currentNode = currentNode.next;
+      }
+
+      if (!isValueRepeated) {
+        currentNode.next = node;
+      }
+
+      this.length++;
+    }
+  }
 
   recoverSizeList() {
     return `El tamaño es ${this.length}`;
@@ -90,14 +113,16 @@ class Node {
 
 const linkedList = new LinkedList();
 linkedList.addElement(20);
-1;
 linkedList.addElement(33);
 linkedList.addElement(14);
 linkedList.addElement(65);
 linkedList.addElement(81);
 
-linkedList.removeElement(14);
-linkedList.removeElement(81);
-console.log(linkedList);
+// linkedList.removeElement(14);
+// linkedList.removeElement(81);
 
+console.log(linkedList);
 console.log(linkedList.recoverSizeList());
+
+linkedList.addElementNotRepeated(65);
+console.log(linkedList);
