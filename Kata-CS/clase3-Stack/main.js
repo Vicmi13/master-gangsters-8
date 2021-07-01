@@ -63,10 +63,10 @@ class Stack {
       return null;
     }
     /** else {} */
-    this.length--; // 0
+    this.length--; // 3
 
-    const removeElem = this.storage[this.length];
-    delete this.storage[this.length];
+    const removeElem = this.storage[this.length]; // {0 : "Lunes"}, {1: "Martes"}
+    delete this.storage[this.length]; // eliminamos el atributo del objeto storage
 
     return removeElem;
   }
@@ -77,6 +77,7 @@ class Stack {
 }
 
 const myStack = new Stack();
+console.log(myStack.pop());
 myStack.push("Lunes");
 myStack.push("martes");
 myStack.push("Miercoles");
