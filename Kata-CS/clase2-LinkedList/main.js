@@ -27,27 +27,31 @@ class LinkedList {
     this.length = 0;
   }
 
-  addElement(data) {
-    const node = new Node(data); // creamos instancia de Node
-    if (this.head === null) {
+  addElement(data) { // 65
+    const node = new Node(data); // creamos instancia de Node { data: 64, next: null}
+    if (this.head === null) { 
       // validamos si es primer elemento
-      this.head = node; // { data: 20, next: null }
+      this.head = node; // 
     } else {
       // cuando hay mas elementos
+      // this.head = { data: 20, next: { data 33, next: null } }
 
       // variable auxiliar
-      let currentNode = this.head; // { data: 20, next: null }
+      let currentNode = this.head; // { data: 20, next: { data 33, next: null } }
 
-      while (currentNode.next) {
+      while (currentNode.next) {  // mientras atributo next tenga algo 
         // llegar a la ultima posicion de nuestra lista
-        currentNode = currentNode.next;
+        currentNode = currentNode.next; // { data 33, next: null }
       }
 
       // add node
       currentNode.next = node;
+      // { data: 20, next: { data 33, next: { data: 14, next: null } } }
+      
     }
     this.length++;
   }
+
   addElementNotRepeated(data) {
     const node = new Node(data); // creamos instancia de Node
     if (this.head === null) {
@@ -113,6 +117,7 @@ class Node {
  */
 
 const linkedList = new LinkedList();
+
 linkedList.addElement(20);
 linkedList.addElement(33);
 linkedList.addElement(14);
