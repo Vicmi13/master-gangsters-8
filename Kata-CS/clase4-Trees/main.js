@@ -52,6 +52,13 @@ class Tree {
         } else {
           //DERECHA
         }
+        if (value > currentNode.data) {
+          if (currentNode.right) {
+            currentNode = currentNode.right;
+          } else {
+            currentNode.right = new Node(value, null, null);
+          }
+        }
       }
     }
   }
@@ -70,3 +77,82 @@ tree.addNode(13);
 tree.addNode(10);
 
 console.log("tree", tree);
+
+const colores = [
+  "amarillo",
+  "rosa",
+  "rojo",
+  "verde",
+  "azul",
+  "negro",
+  "morado",
+  "blanco",
+];
+
+class ColoresPar {
+  constructor() {
+    this.collection = [];
+  }
+
+  enqueue(item) {
+    this.collection.push(item);
+  }
+
+  dequeue() {
+    this.collection.shift();
+  }
+
+  length() {
+    return this.collection.length;
+  }
+  isEmpty() {
+    if (this.collection.length == 0) {
+      return true;
+    } else {
+      return false; // return !true
+    }
+  }
+  front() {
+    return this.collection[0];
+  }
+}
+
+class ColoresNon {
+  constructor() {
+    this.collection = [];
+  }
+
+  enqueue(item) {
+    this.collection.push(item);
+  }
+
+  dequeue() {
+    this.collection.shift();
+  }
+
+  length() {
+    return this.collection.length;
+  }
+  isEmpty() {
+    if (this.collection.length == 0) {
+      return true;
+    } else {
+      return false; // return !true
+    }
+  }
+  front() {
+    return this.collection[0];
+  }
+}
+
+const listaPar = new ColoresPar();
+const listaNon = new ColoresNon();
+
+for (let i = 1; i <= colores.length; i++) {
+  if (i % 2 === 0) {
+    listaPar.enqueue(colores[i - 1]);
+  } else {
+    listaNon.enqueue(colores[i - 1]);
+  }
+}
+console.log(listaPar.collection);
