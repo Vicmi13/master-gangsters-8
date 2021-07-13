@@ -21,6 +21,13 @@ const playList = (name) => {
   }
 }
 
+// https:spotify.web/login
+
+// https: facebook.com/webapi/v1/comments 
+/**
+ * form con data
+ */
+
 // simulando que estamos recuperando info de servidor que tiene esa playlist 
 setTimeout(() => { // 0 ,1 2
   console.log('hola desde timeOut')
