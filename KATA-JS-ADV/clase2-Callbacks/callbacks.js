@@ -20,8 +20,17 @@ printLetter(() => {
  *
  * ASCENDENTE O DESCENDENTE
  *
- *
- * 1 = ASCENDENTE
- * 0 = DESCENDENTE
- * myfunction(10, 8, cb(0)) -> 8, 10
+ 
  */
+
+const orderNumbers = (num1, num2, cbOrderNumbs) => {
+  cbOrderNumbs(num1, num2);
+};
+
+const greaterNumber = (value1, value2) => {
+  if (value1 > value2)
+    console.log(`Numero mayor ${value1} y numero menor ${value2}`);
+  else console.log(`Numero mayor ${value2} y numero menor ${value1}`);
+};
+
+orderNumbers(10, 8, greaterNumber);
