@@ -60,3 +60,45 @@ request.get(`${URL_BASE}starships`, (err, resp, body) => {
  *    Bonus: Filtrar los planetas que su poblacion es desconocida
  *
  */
+
+// EJERCICIO 1
+const URL_BASE_POKE = "https://pokeapi.co/api/v2/";
+request.get(`${URL_BASE_POKE}pokemon/ditto`, (err, resp, pokeBody) => {
+  console.log("error POKEAPI", err);
+  const bodyParsed = JSON.parse(pokeBody);
+
+  bodyParsed.abilities.forEach((element) => {
+    console.log("ABILITY NAME", element.ability.name);
+  });
+
+  console.log("WEIGHT", bodyParsed.weight);
+
+  for (let index = 0; index < bodyParsed.moves.length; index++) {
+    const element = bodyParsed.moves[index];
+    console.log("MOVE NAME", element.move.name);
+  }
+
+  bodyParsed.game_indices.forEach((gameObject) => {
+    if (gameObject.game_index > 100)
+      console.log("GAME INDEX GT 100 = ", gameObject.game_index);
+  });
+});
+
+// EJERCICIO 2
+const URL_BASE_SWAPI = "https://swapi.dev/api/";
+request.get(`${URL_BASE_SWAPI}planets`, (err, respuestita, starwarsBody) => {
+  console.log("error STAR WARS API", err);
+  const bodyParsed = JSON.parse(starwarsBody);
+  console.log("========", bodyParsed);
+
+  console.log("TOTAL PLANETS", bodyParsed.count);
+
+  bodyParsed.results.forEach((planetaObjeto) => {
+    console.log("URL PLANET", planetaObjeto.url);
+    console.log("FILMS ", planetaObjeto.films.length);
+
+    if (planetaObjeto.population === "unknown") {
+      console.log("PLANET NAME  W/unknown population ", planetaObjeto.name);
+    }
+  });
+});
