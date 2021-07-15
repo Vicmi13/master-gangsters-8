@@ -63,6 +63,7 @@ request.get(`${URL_BASE}starships`, (err, resp, body) => {
 
 // EJERCICIO 1
 const URL_BASE_POKE = "https://pokeapi.co/api/v2/";
+
 request.get(`${URL_BASE_POKE}pokemon/ditto`, (err, resp, pokeBody) => {
   console.log("error POKEAPI", err);
   const bodyParsed = JSON.parse(pokeBody);
@@ -89,7 +90,6 @@ const URL_BASE_SWAPI = "https://swapi.dev/api/";
 request.get(`${URL_BASE_SWAPI}planets`, (err, respuestita, starwarsBody) => {
   console.log("error STAR WARS API", err);
   const bodyParsed = JSON.parse(starwarsBody);
-  console.log("========", bodyParsed);
 
   console.log("TOTAL PLANETS", bodyParsed.count);
 
