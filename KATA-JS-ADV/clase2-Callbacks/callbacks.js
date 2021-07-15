@@ -34,3 +34,33 @@ const greaterNumber = (value1, value2) => {
 };
 
 orderNumbers(10, 8, greaterNumber);
+
+/**
+ * Espera 2 argumentos para numeros y uno mas de callback
+ */
+const operaciones = (numero1, numero2, callbackOperaciones) =>
+  callbackOperaciones(numero1, numero2);
+// 10, 7, callbackOperaciones(10, 7)
+
+const operacionSuma = (int1, int2) => {
+  console.log("int1", int1);
+  console.log("int2", int2);
+};
+
+// operaciones(10, 5, operacionSuma);
+
+const suma = (int1, int2) => {
+  return int1 + int2;
+};
+
+const resta = (int1, int2) => {
+  return int1 - int2;
+};
+
+const multi = (int1, int2) => {
+  return int1 * int2;
+};
+
+console.log("suma", operaciones(10, 5, suma));
+operaciones(10, 5, resta);
+operaciones(10, 5, multi);
