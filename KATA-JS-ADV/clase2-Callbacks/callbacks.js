@@ -5,7 +5,7 @@ const cbFunction = (myName) => {
 };
 
 getName("Victor", cbFunction);
-
+////////////////////////////////////////////////////////////////////////
 //declarando funcion
 const printLetter = (x) => x();
 
