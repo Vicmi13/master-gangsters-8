@@ -11,4 +11,4 @@ const objetoEscuela = {
 console.log(`Direccion ${objetoEscuela.address}`);
 console.log(`Estudiantes ${objetoEscuela.students}`);
 
-console.log(info.greetingsArray);
+console.log(info.default.greetingsArray);
