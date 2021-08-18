@@ -7,7 +7,7 @@ const objetoMaterias = {
   name4: "IA",
 };
 
-const greetings = arrayName.map((item) => `Hola ${item}`);
+const greetings = arrayName.map((item) => `Hola !!!! ${item}`);
 
 // Forma en que exportamos con Node
 // module.exports = {
