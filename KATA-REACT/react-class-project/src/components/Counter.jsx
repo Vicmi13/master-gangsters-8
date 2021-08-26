@@ -16,6 +16,8 @@ class Counter extends Component {
   // SE EJECUTA CADA VEZ QUE DETECTE UN CAMBIO EN PROPS O STATE
   componentDidUpdate() {
     console.log("count en UPDATE", this.state.count);
+    // 1ER FORMA DE  PASAR DIRECTAMENTE EL STATE ACTUAL DE COUNTER
+    // this.props.counter(this.state.count);
   }
 
   getCounterInfo() {
@@ -30,9 +32,12 @@ class Counter extends Component {
 
   incrementCounter() {
     // SE CAMBIA EL ESTADO
-    this.setState({ count: this.state.count + 1 });
+    this.setState({ count: this.state.count + 1 }, () => {
+      console.log("ya tiene el ESTADO actual", this.state.count);
+      this.props.counter(this.state.count);
+    });
     // PROPS name cualquier nombre
-    this.props.counter(this.state.count);
+    // this.props.counter(this.state.count);
   }
 
   render() {

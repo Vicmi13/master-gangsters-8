@@ -4,13 +4,10 @@ import ShowInfoCounter from "./components/ShowInfoCounter";
 import React, { useState } from "react";
 
 function App() {
-  const [nameValue, setNameValue] = useState("");
+  const [counterValue, setCounterValue] = useState("");
 
   const handleCounter = (name) => {
-    // this.setState({nameValue: name})
-    setNameValue(name);
-    // console.log('name PROPERTY', nameValue)
-    // console.log('age PROPERTY', age)
+    setCounterValue(name);
   };
 
   return (
@@ -19,7 +16,7 @@ function App() {
         <h3>Proyecto react con class components</h3>
         <img src="" alt="" />
         <Counter counter={handleCounter} />
-        <ShowInfoCounter counter={nameValue} />
+        <ShowInfoCounter counterProp={counterValue} />
       </header>
     </div>
   );
