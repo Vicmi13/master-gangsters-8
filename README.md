@@ -1,2 +1,2 @@
 # master-gangsters-8
-Repositorio del master generación 8 de Devf
+Repositorio del master generación 8 de Devf.
