@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import './App.css';
 import ListComponent from './components/ListComponent';
 import SearchComponent from './components/SearchComponent';
 
 function App() {
-
+  const [taskState, setTaskState] = useState('')
+  
   const handleTaskValue = (taskValue) => {
-    console.log('taskValue', taskValue)
+    // console.log('taskValue', taskValue)
+    setTaskState(taskValue)
   }
 
   return (
@@ -14,7 +17,7 @@ function App() {
         <h4>Todo app con react</h4>
 
         <SearchComponent inputTask={handleTaskValue} />
-        <ListComponent />
+        <ListComponent task={taskState} />
       </header>
     </div>
   );

@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 function SearchComponent(props) {
-
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState("");
   //  useState = [param1, param2, true, 27]
   // const param1Array = useState[0]
   // const param2Array = useState[1]
@@ -11,38 +10,46 @@ function SearchComponent(props) {
   // const [param1, param2, paramBooleano, paramNumerico] = useState('')
 
   const addTask = (event) => {
-    event.preventDefault()
-    props.inputTask(inputValue)
-  }
+    event.preventDefault();
+    props.inputTask(inputValue);
+    // Se limpia input
+    setInputValue("");
+  };
 
   const saveInputValue = (parameter) => {
     // DESTRUCTURING
-    const { target } = parameter
+    const { target } = parameter;
     // 2 FORMA const { target: { value } } = parameter
-    
+
     // FORMA NORMAL parameter.target.value
 
-    setInputValue(target.value)
-
-  }
+    setInputValue(target.value);
+  };
 
   return (
     <div>
       <form>
-        <label style={{marginRight: 10 }}>Tarea</label>
-        <input type="text" onChange={e => saveInputValue(e)} placeholder="Agregar nueva tarea" />
+        <label style={{ marginRight: 10 }}>Tarea</label>
+        <input
+          type="text"
+          value={inputValue || ""}
+          onChange={(e) => saveInputValue(e)}
+          placeholder="Agregar nueva tarea"
+        />
 
-        <button type="submit" onClick={(eventt) => addTask(eventt)}> Agregar tarea</button>
+        <button type="submit" onClick={(eventt) => addTask(eventt)}>
+          {" "}
+          Add{" "}
+        </button>
       </form>
-        
     </div>
-  )
+  );
 }
 
-export default SearchComponent
+export default SearchComponent;
 
 /*
-function hello (name) {
+function hello (name || "valor por default") {
   addTask(name)
 }
 
