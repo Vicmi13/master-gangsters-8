@@ -12,17 +12,13 @@ function ListComponent(props) {
     // DESTRUCTURING
     const { task } = props;
     if (task) {
-      console.log("task nueva", task);
+      console.log("props que entra", task);
 
-      // 1 FORMA ===================
-      const copyArray = taskArray;
-      const elementObject = {
-        text: task,
-        isCompleted: false,
-      };
-      copyArray.push(elementObject);
-      console.log(copyArray);
-      setTaskArray(copyArray);
+      /** EJEMPLO de spread operator ARREGLOS */
+      // const arregloEjemplo = ["nombre", "string"];
+      // const newArray = [...arregloEjemplo, [23]];
+      setTaskArray([...taskArray, { text: task, isCompleted: false }]);
+
       // 2 FORMA ===================
       // setTaskArray([...taskArray, taskArray.concat(task)]);
     }
