@@ -19,8 +19,6 @@ function App() {
       <Header />
       <div className="App">
         <header className="App-header">
-          <h4>Todo app con react</h4>
-
           <SearchComponent inputTask={handleTaskValue} />
           <ListComponent task={taskState} />
         </header>

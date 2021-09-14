@@ -11,24 +11,33 @@ function ListComponent(props) {
   useEffect(() => {
     // DESTRUCTURING
     const { task } = props;
-    console.log("props que entra", task);
+    if (task) {
+      console.log("props que entra", task);
 
-    /** EJEMPLO de spread operator ARREGLOS */
-    // const arregloEjemplo = ["nombre", "string"];
-    // const newArray = [...arregloEjemplo, [23]];
-    setTaskArray([...taskArray, { text: task, isCompleted: false }]);
+      /** EJEMPLO de spread operator ARREGLOS */
+      // const arregloEjemplo = ["nombre", "string"];
+      // const newArray = [...arregloEjemplo, [23]];
+      setTaskArray([...taskArray, { text: task, isCompleted: false }]);
 
-    // 2 FORMA ===================
-    // setTaskArray([...taskArray, taskArray.concat(task)]);
+      // 2 FORMA ===================
+      // setTaskArray([...taskArray, taskArray.concat(task)]);
+    }
   }, [props.task]);
+
+  useEffect(() => {
+    console.log("taskArray", taskArray);
+  }, [taskArray]);
 
   const changeCheckedTask = (index) => {
     console.log("indice de element", index);
+    // hacemos copia de nuestro estado ([] de objetos)
+    const copyTaskArray = [...taskArray];
 
-    // recuperar lista
-    // ir al elememto con ese indice
-    // setear  isCompleted: true
-    // crear estilos para validar si esta done esa tarea
+    // Cambiar el valor de isSelected
+    copyTaskArray[index].isCompleted = !copyTaskArray[index].isCompleted;
+
+    // Setear estado con nuevo valor en ese elemento
+    setTaskArray(copyTaskArray);
   };
 
   return (
@@ -41,13 +50,13 @@ function ListComponent(props) {
         <>
           <h4>Lista de todos</h4>
           {taskArray.map((elem, index) => (
-            <div key={index}>
+            <div key={index} onClick={() => changeCheckedTask(index)}>
               <input
                 checked={elem.isCompleted}
                 type="checkbox"
-                onChange={() => changeCheckedTask(index)}
+                onChange={() => {}}
               />
-              <span>{elem.text}</span>
+              <span>Valor {elem.text}</span>
             </div>
           ))}
         </>

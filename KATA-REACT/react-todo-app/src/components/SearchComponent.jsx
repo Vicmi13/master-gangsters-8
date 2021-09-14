@@ -35,7 +35,6 @@ function SearchComponent(props) {
   return (
     <div>
       <form>
-        <label style={{ marginRight: 10 }}>Tarea</label>
         <input
           type="text"
           style={{ fontSize: 18, color: "white" }}
