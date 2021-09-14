@@ -1,8 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import ListComponent from "./components/ListComponent";
 import SearchComponent from "./components/SearchComponent";
 import "../node_modules/materialize-css/dist/css/materialize.min.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   const [taskState, setTaskState] = useState("");
@@ -13,14 +15,18 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h4>Todo app con react</h4>
+    <>
+      <Header />
+      <div className="App">
+        <header className="App-header">
+          <h4>Todo app con react</h4>
 
-        <SearchComponent inputTask={handleTaskValue} />
-        <ListComponent task={taskState} />
-      </header>
-    </div>
+          <SearchComponent inputTask={handleTaskValue} />
+          <ListComponent task={taskState} />
+        </header>
+      </div>
+      <Footer />
+    </>
   );
 }
 
