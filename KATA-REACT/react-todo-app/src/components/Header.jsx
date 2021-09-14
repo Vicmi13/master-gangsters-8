@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Header = () => {
+  const [name, setName] = useState("Vic");
   return (
     <nav>
       <div className="nav-wrapper">
         <a href="#" className="brand-logo">
-          React todo app
+          React todo app de {name}
         </a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li>

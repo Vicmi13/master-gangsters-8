@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 
 function ListComponent(props) {
   const [taskArray, setTaskArray] = useState([
-    {
-      text: "Ir a comer pizza",
-      isCompleted: false,
-    },
+    // {
+    //   text: "Ir a comer pizza",
+    //   isCompleted: false,
+    // },
   ]);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function ListComponent(props) {
   }, [taskArray]);
 
   const changeCheckedTask = (index) => {
-    console.log("indice de element", index);
+    // console.log("indice de element", index);
     // hacemos copia de nuestro estado ([] de objetos)
     const copyTaskArray = [...taskArray];
 
@@ -40,10 +40,24 @@ function ListComponent(props) {
     setTaskArray(copyTaskArray);
   };
 
+  const textStyles = (isCompleted) => {
+    console.log("is completed", isCompleted);
+    // sintaxis condicion ? en verdadero se ejecuta esto : en falso esto
+    return isCompleted
+      ? {
+          fontColor: "#d9d9d9",
+          textDecoration: "line-through",
+          fontSize: 10,
+        }
+      : {
+          fontColor: "black",
+          fontWeight: 900,
+        };
+  };
+
   return (
     <div>
       {/** SINTAXIS TERNARIO  condition ? true : false  */}
-      <span> tamaño {taskArray.length} </span>
       {taskArray.length === 0 ? (
         <h3>No se ha agregado ninguna tarea</h3>
       ) : (
@@ -56,7 +70,7 @@ function ListComponent(props) {
                 type="checkbox"
                 onChange={() => {}}
               />
-              <span>Valor {elem.text}</span>
+              <span style={textStyles(elem.isCompleted)}> {elem.text}</span>
             </div>
           ))}
         </>

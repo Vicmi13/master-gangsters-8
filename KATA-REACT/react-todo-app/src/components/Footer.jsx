@@ -8,7 +8,7 @@ const Footer = () => {
           <div className="col l6 s12">
             <h5 className="white-text">Footer Content</h5>
             <p className="grey-text text-lighten-4">
-              Este es mi footer de mi todo app
+              Este es el footer PROPS de mi todo app
             </p>
           </div>
           <div className="col l4 offset-l2 s12">
