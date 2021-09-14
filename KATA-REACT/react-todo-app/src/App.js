@@ -1,15 +1,16 @@
-import { useState } from 'react';
-import './App.css';
-import ListComponent from './components/ListComponent';
-import SearchComponent from './components/SearchComponent';
+import { useState } from "react";
+import "./App.css";
+import ListComponent from "./components/ListComponent";
+import SearchComponent from "./components/SearchComponent";
+import "../node_modules/materialize-css/dist/css/materialize.min.css";
 
 function App() {
-  const [taskState, setTaskState] = useState('')
-  
+  const [taskState, setTaskState] = useState("");
+
   const handleTaskValue = (taskValue) => {
     // console.log('taskValue', taskValue)
-    setTaskState(taskValue)
-  }
+    setTaskState(taskValue);
+  };
 
   return (
     <div className="App">

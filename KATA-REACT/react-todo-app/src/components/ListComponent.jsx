@@ -11,17 +11,15 @@ function ListComponent(props) {
   useEffect(() => {
     // DESTRUCTURING
     const { task } = props;
-    if (task) {
-      console.log("props que entra", task);
+    console.log("props que entra", task);
 
-      /** EJEMPLO de spread operator ARREGLOS */
-      // const arregloEjemplo = ["nombre", "string"];
-      // const newArray = [...arregloEjemplo, [23]];
-      setTaskArray([...taskArray, { text: task, isCompleted: false }]);
+    /** EJEMPLO de spread operator ARREGLOS */
+    // const arregloEjemplo = ["nombre", "string"];
+    // const newArray = [...arregloEjemplo, [23]];
+    setTaskArray([...taskArray, { text: task, isCompleted: false }]);
 
-      // 2 FORMA ===================
-      // setTaskArray([...taskArray, taskArray.concat(task)]);
-    }
+    // 2 FORMA ===================
+    // setTaskArray([...taskArray, taskArray.concat(task)]);
   }, [props.task]);
 
   const changeCheckedTask = (index) => {

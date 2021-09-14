@@ -11,9 +11,15 @@ function SearchComponent(props) {
 
   const addTask = (event) => {
     event.preventDefault();
+    // valida si el input || state esta vacio
+    if (!inputValue) {
+      alert("el campo esta vacio");
+      return;
+    }
     props.inputTask(inputValue);
     // Se limpia input
     setInputValue("");
+    console.log("se sigue ejecutando");
   };
 
   const saveInputValue = (parameter) => {
@@ -32,15 +38,17 @@ function SearchComponent(props) {
         <label style={{ marginRight: 10 }}>Tarea</label>
         <input
           type="text"
+          style={{ fontSize: 18, color: "white" }}
           value={inputValue || ""}
           onChange={(e) => saveInputValue(e)}
           placeholder="Agregar nueva tarea"
         />
-
-        <button type="submit" onClick={(eventt) => addTask(eventt)}>
-          {" "}
-          Add{" "}
-        </button>
+        <a
+          className="btn-floating btn-large waves-effect waves-light red"
+          onClick={(eventt) => addTask(eventt)}
+        >
+          <i className="material-icons">add</i>
+        </a>
       </form>
     </div>
   );
