@@ -26,8 +26,8 @@ function ListComponent(props) {
 
   useEffect(() => {
     console.log("taskArray", taskArray);
-    props.firstElement(taskArray[0]);
-    props.lastElement(taskArray[taskArray.length - 1]);
+    props.firstElement(taskArray[0]); // { text: '', isCompleted: false }
+    props.lastElement(taskArray[taskArray.length - 1].text);
   }, [taskArray]);
 
   const changeCheckedTask = (index) => {

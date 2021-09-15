@@ -10,6 +10,7 @@ const Header = (props) => {
 
   // PASO 3  verificando que llegue en el props del componente el valor que estoy esperando
   console.log("FIRST ELEMENT", props.element);
+  console.log("FIRST ELEMENT text", props.element?.text);
 
   return (
     <nav>
@@ -20,7 +21,8 @@ const Header = (props) => {
         </a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li>
-            <a href="sass.html">Lista</a>
+            {/* PASO 4 mostrarlo en el header */}
+            <a href="sass.html">{props.element?.text}</a>
           </li>
           <li>
             <a href="badges.html">Mis mejores vacaciones</a>

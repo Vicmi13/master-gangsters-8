@@ -18,7 +18,8 @@ const Footer = (props) => {
               <li>
                 <a className="grey-text text-lighten-3" href="#!">
                   {/* Poner el ultimo elemento de mi lista todo sino hay nada dejarlo en blanco */}
-                  Link 1
+                  {/* PASO 4 mostrarlo en el footer */}
+                  {props.element?.text}
                 </a>
               </li>
               <li>

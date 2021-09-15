@@ -23,13 +23,13 @@ function App() {
   };
 
   const handleFirstTask = (primeraTarea) => {
-    console.log("primera tarea", primeraTarea);
+    // console.log("primera tarea", primeraTarea);
     // PASO 1 guardar valor que llega en un state
     setFirst(primeraTarea);
   };
 
   const handleLastTask = (ultimaTarea) => {
-    console.log("ultima tarea", ultimaTarea);
+    // console.log("ultima tarea", ultimaTarea);
     // PASO 1 guardar valor que llega en un state
     setLast(ultimaTarea);
   };
