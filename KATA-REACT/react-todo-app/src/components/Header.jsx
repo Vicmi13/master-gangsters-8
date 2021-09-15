@@ -8,6 +8,9 @@ const Header = (props) => {
     props.getName(name);
   }, []);
 
+  // PASO 3  verificando que llegue en el props del componente el valor que estoy esperando
+  console.log("FIRST ELEMENT", props.element);
+
   return (
     <nav>
       <div className="nav-wrapper">

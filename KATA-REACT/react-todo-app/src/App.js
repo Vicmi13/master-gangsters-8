@@ -9,6 +9,8 @@ import Footer from "./components/Footer";
 function App() {
   const [taskState, setTaskState] = useState("");
   const [name, setName] = useState("");
+  const [first, setFirst] = useState("");
+  const [last, setLast] = useState("");
 
   const handleTaskValue = (taskValue) => {
     // console.log('taskValue', taskValue)
@@ -22,26 +24,32 @@ function App() {
 
   const handleFirstTask = (primeraTarea) => {
     console.log("primera tarea", primeraTarea);
+    // PASO 1 guardar valor que llega en un state
+    setFirst(primeraTarea);
   };
 
-  const handleSecondTask = (ultimaTarea) => {
+  const handleLastTask = (ultimaTarea) => {
     console.log("ultima tarea", ultimaTarea);
+    // PASO 1 guardar valor que llega en un state
+    setLast(ultimaTarea);
   };
 
   return (
     <>
-      <Header getName={handleGetName} />
+      {/* PASO 2 pasarlo como nueva prop a este componente */}
+      <Header getName={handleGetName} element={first} />
       <div className="App">
         <header className="App-header">
           <SearchComponent inputTask={handleTaskValue} />
           <ListComponent
             task={taskState}
             firstElement={handleFirstTask}
-            lastElement={handleSecondTask}
+            lastElement={handleLastTask}
           />
         </header>
       </div>
-      <Footer propsName={name} />
+      {/* PASO 2 pasarlo como nueva prop a este componente */}
+      <Footer propsName={name} element={last} />
     </>
   );
 }
