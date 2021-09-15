@@ -19,7 +19,6 @@ function SearchComponent(props) {
     props.inputTask(inputValue);
     // Se limpia input
     setInputValue("");
-    console.log("se sigue ejecutando");
   };
 
   const saveInputValue = (parameter) => {

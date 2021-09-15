@@ -8,22 +8,40 @@ import Footer from "./components/Footer";
 
 function App() {
   const [taskState, setTaskState] = useState("");
+  const [name, setName] = useState("");
 
   const handleTaskValue = (taskValue) => {
     // console.log('taskValue', taskValue)
     setTaskState(taskValue);
   };
 
+  const handleGetName = (nombreDesdeEstado) => {
+    // console.log("nombreDesdeEstado", nombreDesdeEstado);
+    setName(nombreDesdeEstado);
+  };
+
+  const handleFirstTask = (primeraTarea) => {
+    console.log("primera tarea", primeraTarea);
+  };
+
+  const handleSecondTask = (ultimaTarea) => {
+    console.log("ultima tarea", ultimaTarea);
+  };
+
   return (
     <>
-      <Header />
+      <Header getName={handleGetName} />
       <div className="App">
         <header className="App-header">
           <SearchComponent inputTask={handleTaskValue} />
-          <ListComponent task={taskState} />
+          <ListComponent
+            task={taskState}
+            firstElement={handleFirstTask}
+            lastElement={handleSecondTask}
+          />
         </header>
       </div>
-      <Footer />
+      <Footer propsName={name} />
     </>
   );
 }

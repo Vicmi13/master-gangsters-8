@@ -12,7 +12,7 @@ function ListComponent(props) {
     // DESTRUCTURING
     const { task } = props;
     if (task) {
-      console.log("props que entra", task);
+      // console.log("props que entra", task);
 
       /** EJEMPLO de spread operator ARREGLOS */
       // const arregloEjemplo = ["nombre", "string"];
@@ -26,6 +26,8 @@ function ListComponent(props) {
 
   useEffect(() => {
     console.log("taskArray", taskArray);
+    props.firstElement(taskArray[0]);
+    props.lastElement(taskArray[taskArray.length - 1]);
   }, [taskArray]);
 
   const changeCheckedTask = (index) => {
@@ -41,7 +43,7 @@ function ListComponent(props) {
   };
 
   const textStyles = (isCompleted) => {
-    console.log("is completed", isCompleted);
+    // console.log("is completed", isCompleted);
     // sintaxis condicion ? en verdadero se ejecuta esto : en falso esto
     return isCompleted
       ? {

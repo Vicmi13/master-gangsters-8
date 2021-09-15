@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer = () => {
+const Footer = (props) => {
   return (
     <footer className="page-footer">
       <div className="container">
@@ -8,7 +8,7 @@ const Footer = () => {
           <div className="col l6 s12">
             <h5 className="white-text">Footer Content</h5>
             <p className="grey-text text-lighten-4">
-              Este es el footer PROPS de mi todo app
+              Este es el footer de {props.propsName} de mi todo app
             </p>
           </div>
           <div className="col l4 offset-l2 s12">
@@ -16,6 +16,7 @@ const Footer = () => {
             <ul>
               <li>
                 <a className="grey-text text-lighten-3" href="#!">
+                  {/* Poner el ultimo elemento de mi lista todo sino hay nada dejarlo en blanco */}
                   Link 1
                 </a>
               </li>

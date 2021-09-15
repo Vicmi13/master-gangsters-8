@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const Header = () => {
-  const [name, setName] = useState("Vic");
+const Header = (props) => {
+  const [name] = useState("Vic");
+
+  useEffect(() => {
+    // ComponentDidMount
+    props.getName(name);
+  }, []);
+
   return (
     <nav>
       <div className="nav-wrapper">
         <a href="#" className="brand-logo">
           React todo app de {name}
+          {/* Poner el primer elemento de mi lista todo sino hay nada dejarlo en blanco */}
         </a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li>
