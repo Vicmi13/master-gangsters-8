@@ -27,7 +27,7 @@ function ListComponent(props) {
   useEffect(() => {
     console.log("taskArray", taskArray);
     props.firstElement(taskArray[0]); // { text: '', isCompleted: false }
-    props.lastElement(taskArray[taskArray.length - 1].text);
+    props.lastElement(taskArray[taskArray.length - 1]);
   }, [taskArray]);
 
   const changeCheckedTask = (index) => {
@@ -57,6 +57,26 @@ function ListComponent(props) {
         };
   };
 
+  // INSTRUCCIONES DELETE
+  // 1 PASO recuperar indice de elem a borar
+  const deleteTask = (i) => {
+    // 2 PASO filtrar array que regrese elementos diferentes al indice i
+    console.log("debe de borrar tarea con indice", i);
+
+    // 3 PASO hacer copia de estado y trabajar sobre ello
+    const copyTaskArray = taskArray;
+    // 4 PASO remover elemento por indice
+
+    copyTaskArray.splice(i, 1);
+    // console.log("taskFilter ", taskFilter);
+    // 5 PASO setear estado con nuevo array
+    setTaskArray([...copyTaskArray]);
+
+    /** OTRA FORMA de filtrar */
+    // const newArray = copyTaskArray.filter((item, indice) => indice !== i);
+    // setTaskArray(newArray);
+  };
+
   return (
     <div>
       {/** SINTAXIS TERNARIO  condition ? true : false  */}
@@ -66,14 +86,19 @@ function ListComponent(props) {
         <>
           <h4>Lista de todos</h4>
           {taskArray.map((elem, index) => (
-            <div key={index} onClick={() => changeCheckedTask(index)}>
-              <input
-                checked={elem.isCompleted}
-                type="checkbox"
-                onChange={() => {}}
-              />
-              <span style={textStyles(elem.isCompleted)}> {elem.text}</span>
-            </div>
+            <>
+              <div key={index} onClick={() => changeCheckedTask(index)}>
+                <input
+                  checked={elem.isCompleted}
+                  type="checkbox"
+                  onChange={() => {}}
+                />
+                <span style={textStyles(elem.isCompleted)}> {elem.text}</span>
+              </div>
+              <i class="material-icons" onClick={() => deleteTask(index)}>
+                delete
+              </i>
+            </>
           ))}
         </>
       )}

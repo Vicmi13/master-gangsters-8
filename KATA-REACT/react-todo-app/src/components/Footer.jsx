@@ -1,7 +1,7 @@
 import React from "react";
 
 const Footer = (props) => {
-  console.log("LAST ELEMENT", props.element);
+  // console.log("LAST ELEMENT", props.element);
   return (
     <footer className="page-footer">
       <div className="container">

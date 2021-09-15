@@ -9,8 +9,8 @@ const Header = (props) => {
   }, []);
 
   // PASO 3  verificando que llegue en el props del componente el valor que estoy esperando
-  console.log("FIRST ELEMENT", props.element);
-  console.log("FIRST ELEMENT text", props.element?.text);
+  // console.log("FIRST ELEMENT", props.element);
+  // console.log("FIRST ELEMENT text", props.element?.text);
 
   return (
     <nav>
