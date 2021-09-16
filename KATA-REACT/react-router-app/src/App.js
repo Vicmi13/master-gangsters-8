@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { Nav } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+
 import Menu from './components/Menu';
 import Image from './components/Image';
 import About from './components/About';
@@ -37,6 +38,8 @@ function App() {
             </Nav.Link>
           </Nav.Item>
         </Nav>
+
+
         <nav>
           <ul>
             <li>
