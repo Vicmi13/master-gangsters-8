@@ -4,6 +4,7 @@ function About() {
     return (
         <div>
             About me
+            Status code
         </div>
     )
 }

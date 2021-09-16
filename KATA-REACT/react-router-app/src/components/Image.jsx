@@ -1,25 +1,49 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 const axios = require('axios').default;
 
 const Image = () => {
+    const BASE_URL = 'https://source.unsplash.com/'
+
+    const [image, setImage] = useState("")
+    const [statusCode, setStatusCode] = useState(0)
 
     // componentDidMount
     useEffect(() => {
         getUnplashImage()
     }, [])
 
-    const getUnplashImage = (() => {
-        // try {
-        //     const imageResponse =  axios.get('url')
-        // }
-        // setTimeout(() => {
-        //     console.log('llamando a metodo')
-        // }, 3000)
-    })
+    useEffect(() => {
+        console.log('statusCode en useeffect', statusCode)
+        // Este  useEffect  esta escuchando los cambios en el estado status     
+    }, [statusCode])
+
+
+    const getUnplashImage = async () => {
+        try {
+            // Lo que nos regresa aqui es un objeto y se aplica destructuring
+            // para obtener solo el atributo data
+            const { data, status } = await axios.get(`${BASE_URL}random/800x600`)
+            setImage(data)
+            setStatusCode(status)
+            // console.log('imageResponse data', data)
+
+            // OTRA FORMA de aplicar  destructuring
+            // const {data } = objectImage
+
+        } catch (error) {
+            console.log('ocurrio un error', error)
+        }
+
+    }
 
     return (
         <div>
-            imagen
+            {image.length === 0 ?
+                <h4>Cargando imagen</h4>
+                : <div>
+                    {image}
+                </div>
+            }
         </div>
     )
 }
