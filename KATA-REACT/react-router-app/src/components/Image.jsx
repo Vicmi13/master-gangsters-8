@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 const axios = require('axios').default;
 
-const Image = () => {
+const Image = (props) => {
     const BASE_URL = 'https://source.unsplash.com/'
 
     const [image, setImage] = useState("")
@@ -15,6 +15,8 @@ const Image = () => {
     useEffect(() => {
         console.log('statusCode en useeffect', statusCode)
         // Este  useEffect  esta escuchando los cambios en el estado status     
+
+        props.statusCode(statusCode)
     }, [statusCode])
 
 
@@ -23,6 +25,7 @@ const Image = () => {
             // Lo que nos regresa aqui es un objeto y se aplica destructuring
             // para obtener solo el atributo data
             const { data, status } = await axios.get(`${BASE_URL}random/800x600`)
+            console.log('data', data)
             setImage(data)
             setStatusCode(status)
             // console.log('imageResponse data', data)

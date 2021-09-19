@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -14,6 +15,14 @@ import Image from './components/Image';
 import About from './components/About';
 
 function App() {
+  const [statusC, setstatusC] = useState(0)
+
+  const handleStatus = (value) => { // 0 o 200
+    console.log('status', value)
+    // Guardo el state de <Image /> en un estado 
+    setstatusC(value)
+  }
+
   return (
     // Router es el que engloba y va a servir como mi enrutador
     <Router>
@@ -38,7 +47,6 @@ function App() {
             </Nav.Link>
           </Nav.Item>
         </Nav>
-
 
         <nav>
           <ul>
@@ -68,10 +76,10 @@ function App() {
           <Menu />
         </Route>
         <Route path="/imagen">
-          <Image />
+          <Image statusCode={handleStatus} />
         </Route>
         <Route path="/about">
-          <About />
+          <About statusProp={statusC} />
         </Route>
       </Switch>
     </Router>
