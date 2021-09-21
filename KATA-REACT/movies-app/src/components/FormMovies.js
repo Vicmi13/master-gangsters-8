@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 function FormMovies(props) {
 
@@ -24,9 +26,13 @@ function FormMovies(props) {
 
     return(
         <div>
-            <input type="text" placeholder="pelicula" onChange={(e) => movienameFn(e)}/>
-            <input type="text" onChange={(e) => ticketsFn(e)}/>
-            <button onClick={() => addMovie()}>+</button>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Película</Form.Label>
+                <Form.Control type="text" placeholder="pelicula" onChange={(e) => movienameFn(e)}/>
+                <Form.Label>Boletos</Form.Label>
+                <Form.Control type="text" placeholder="boletos" onChange={(e) => ticketsFn(e)}/>
+            </Form.Group>
+            <Button variant="primary" onClick={() => addMovie()}>+</Button>
         </div>
     );
 }
