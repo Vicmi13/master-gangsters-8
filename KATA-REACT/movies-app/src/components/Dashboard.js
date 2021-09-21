@@ -14,7 +14,13 @@ import Movies from './Movies';
 function Dashboard() {
 
     // state
-  const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState([]);
+
+    // state
+    const [indicator, setIndicator] = useState("");
+
+    // state
+    const [flag, setFlag] = useState("n");
 
   const fn = (movieObject) => {
     console.log('LLEGANDO: ', movieObject);
@@ -23,22 +29,30 @@ function Dashboard() {
     setMovies(newMovies);
   }
 
+  const indicatorFn = (receivedIndicator) => {
+    console.log('LLEGANDO - indicatorFn: ', receivedIndicator);
+    receivedIndicator === 'Buenas noches' ? setFlag('d') : setFlag('n')
+    console.log('LLEGANDO flag: ', flag);
+    setIndicator(receivedIndicator);
+  }
+
   // useEffect
   useEffect(() => {
     console.log('useEffect - movies: ', movies);
-  }, [movies])
+    console.log('useEffect - flag: ', flag);
+  }, [movies, flag])
 
     return(
         <Switch>
           <Route path="/saluda">
-            <Saluda />
+            <Saluda flag={flag} indicatorSended={indicatorFn}/>
           </Route>
           <Route path="/movies">
             <FormMovies movieObject={fn}/>
             <Movies receivedMovies={movies}/>
           </Route>
           <Route path="/">
-            <Home />
+            <Home name="Películas" patito={indicator}/>
           </Route>
         </Switch>
     );

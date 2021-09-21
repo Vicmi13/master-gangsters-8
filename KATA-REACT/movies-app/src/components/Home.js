@@ -1,8 +1,16 @@
 import React from "react";
 
-function Home() {
+// van a hacer algo con la info antes de pintar
+// function Home(props) {
+    // const appName = props.name; 
+    function Home(props) {
+    const { name } = props;
+    const saludo = props.patito || 'Wenas wenas';
+
+    console.log('props.patito', props.patito)
+
     return(
-        <div>home works!</div>
+        <div>¡{saludo} bienvenido a {name}!</div>
     );
 }
 

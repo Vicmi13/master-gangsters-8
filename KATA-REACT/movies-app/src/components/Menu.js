@@ -3,6 +3,7 @@ import React from "react";
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import './Menu.css'
 
 import {
   Link
@@ -15,15 +16,9 @@ function Menu() {
         <Navbar bg="dark" variant="dark">
           <Container>
               <Nav className="me-auto">
-              <Nav.Link>
-                <Nav.Link href="#home">Home</Nav.Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link to="/movies">Cartelera</Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link to="/saluda">saluda</Link>
-              </Nav.Link>
+              <Link to="/" className="nav-bar-link">Home</Link>
+              <Link to="/movies" className="nav-bar-link">Cartelera</Link>
+              <Link to="/saluda" className="nav-bar-link">saluda</Link>
             </Nav>
           </Container>
         </Navbar>
