@@ -6,10 +6,10 @@ import {
     Route,
   } from "react-router-dom";
 
-import { Home } from './Home';
-import { Saluda } from './Saluda';
-import FormMovies from './FormMovies';
-import Movies from './Movies';
+import { Home } from '../Home';
+import { Saluda } from '../Saluda';
+import FormMovies from '../FormMovies';
+import Movies from '../Movies';
 
 function Dashboard() {
 
