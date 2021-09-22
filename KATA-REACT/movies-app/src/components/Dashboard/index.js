@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Cartel } from '../Cartel/';
+import { ItemMovie } from '../ItemMovie/';
 
 import {
     BrowserRouter as Router,
@@ -48,8 +50,13 @@ function Dashboard() {
             <Saluda flag={flag} indicatorSended={indicatorFn}/>
           </Route>
           <Route path="/movies">
+            
             <FormMovies movieObject={fn}/>
-            <Movies receivedMovies={movies}/>
+            
+            <Cartel>
+              {movies.map((element, index) => (<ItemMovie movie={element.movie} tickets={element.tickets} key={index}/>) )}
+            </Cartel>
+        
           </Route>
           <Route path="/">
             <Home name="Películas" patito={indicator}/>
