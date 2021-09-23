@@ -15,7 +15,7 @@ import Movies from '../Movies';
 
 function Dashboard() {
 
-    // state
+    // 1 globalState
     const [movies, setMovies] = useState([]);
 
     // state
@@ -24,12 +24,6 @@ function Dashboard() {
     // state
     const [flag, setFlag] = useState("n");
 
-  const fn = (movieObject) => {
-    console.log('LLEGANDO: ', movieObject);
-    const copyMovies = [...movies];
-    const newMovies = [...copyMovies, movieObject];
-    setMovies(newMovies);
-  }
 
   const indicatorFn = (receivedIndicator) => {
     console.log('LLEGANDO - indicatorFn: ', receivedIndicator);
@@ -38,12 +32,6 @@ function Dashboard() {
     setIndicator(receivedIndicator);
   }
 
-  // useEffect
-  useEffect(() => {
-    console.log('useEffect - movies: ', movies);
-    console.log('useEffect - flag: ', flag);
-  }, [movies, flag])
-
     return(
         <Switch>
           <Route path="/saluda">
@@ -51,9 +39,10 @@ function Dashboard() {
           </Route>
           <Route path="/movies">
             
-            <FormMovies movieObject={fn}/>
+            { /* 2 Informarle a los componentes cual es el state y el setState global */}
+            <FormMovies movies={movies} setMovies={setMovies}/>
+            <Movies movies={movies} setMovies={setMovies}/>
 
-            <Movies receivedMovies={movies}/>
             {/*<Cartel movies={movies}>
               {movies.map((element, index) => (<ItemMovie movie={element.movie} tickets={element.tickets} key={index}/>) )}
             </Cartel>*/}
