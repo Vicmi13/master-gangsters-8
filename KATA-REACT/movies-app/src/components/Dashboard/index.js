@@ -52,10 +52,11 @@ function Dashboard() {
           <Route path="/movies">
             
             <FormMovies movieObject={fn}/>
-            
-            <Cartel>
+
+            <Movies receivedMovies={movies}/>
+            {/*<Cartel movies={movies}>
               {movies.map((element, index) => (<ItemMovie movie={element.movie} tickets={element.tickets} key={index}/>) )}
-            </Cartel>
+            </Cartel>*/}
         
           </Route>
           <Route path="/">

@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-function Movies(props){
+function Movies({ receivedMovies }){
 
-    console.log('props', props.receivedMovies)
+    const [moviesPublished, setMoviesPublished] = useState([]);
+    
+    useEffect(() => {
+        const pmovies = [ ...receivedMovies ] || [];
+        if(pmovies.length > 10) {
+            pmovies.splice(0, 3);
+        }
+        setMoviesPublished([...pmovies]);
+    }, [receivedMovies]);
 
     return(
         <div>
@@ -16,9 +24,9 @@ function Movies(props){
                 </thead>
                 <tbody>
                 {
-                    props.receivedMovies.length > 0
-                    ? props.receivedMovies.map((movie) => (<tr> <td>{movie.movie}</td> <td>{movie.tickets}</td> </tr>) )
-                    : <div>No hay películas en la Cartelera</div>
+                    moviesPublished.length > 0
+                    ? moviesPublished.map((movie) => (<tr> <td>{movie.movie}</td> <td>{movie.tickets}</td> </tr>) )
+                    : <tr><td>No hay películas en la Cartelera</td></tr>
                 }
                 </tbody>
             </table>
