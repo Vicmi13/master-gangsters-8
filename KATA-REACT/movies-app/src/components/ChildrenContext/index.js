@@ -2,7 +2,7 @@ import React, { useState, createContext } from "react";
 
 const ChildrenContext = createContext();
 
-function ChildrenProvider(props) {
+function ChildrenProvider({children}) {
 
     const [globalName, setGlobalName] = useState('no tengo un nombre');
   
@@ -12,7 +12,7 @@ function ChildrenProvider(props) {
             setGlobalName,
         }}
         >
-            {props.children}
+            {children}
         </ChildrenContext.Provider>
     );
     
