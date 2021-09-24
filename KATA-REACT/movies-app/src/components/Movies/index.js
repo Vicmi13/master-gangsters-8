@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 function Movies(props){
 
     return(
-        
         <div>
             <h3>Cartelera</h3>
             <table>
@@ -16,7 +15,7 @@ function Movies(props){
                 <tbody>
                 {
                     props.movies?.length > 0
-                    ? props.movies.map((movie) => (<tr> <td>{movie.movieName}</td> <td>{movie.tickets}</td> </tr>) )
+                    ? props.movies.map((movie, index) => (<tr key={index}><td>{movie.movieName}</td> <td>{movie.tickets}</td></tr>) )
                     : <tr><td>No hay películas en la Cartelera</td></tr>
                 }
                 </tbody>
