@@ -19,6 +19,7 @@ function Menu() {
               <Link to="/" className="nav-bar-link">Home</Link>
               <Link to="/movies" className="nav-bar-link">Cartelera</Link>
               <Link to="/saluda" className="nav-bar-link">saluda</Link>
+              <Link to="/context" className="nav-bar-link">Contexto</Link>
             </Nav>
           </Container>
         </Navbar>
