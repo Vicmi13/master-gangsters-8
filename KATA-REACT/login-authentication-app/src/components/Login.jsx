@@ -1,11 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import Button from '@mui/material/Button';
 import { Button, Card, CardContent, TextField, Typography } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import EmailIcon from '@mui/icons-material/Email';
 import './Login.css'
+import loginService from '../services/Auth.services';
 
 function Login() {
+
+    // PASO 1 CREAR estado para guardar valores de INPUTS
+    const [loginObject, setLoginObject] = useState({})
+
+    const handleInputChange = ({ target: { name, value } }) => {
+        // PASO 4 recuperar valores de input y setear en ESTADO
+
+        /** destructurin de event 
+         *  event.target.name && event.target.value
+         * 
+         *  Otra forma
+         *  const { name, value } = target 
+         * */
+        setLoginObject({ ...loginObject, [name]: value })
+
+        // completar la respuesta de la promesa
+        // RECORDAR cambiar URL_BACKEND  
+        loginService(loginObject)
+    }
+
+    const sendLoginRequest = () => {
+        /**
+         * Validar que ni email ni password vengan vacias,
+         * en caso de que una o las dos, mandar alert
+         * EXTRA Mostar componente de alertas de Material UI
+         * EXTRA 2 Validar por regex el email
+         */
+
+        // PASO 6 
+        console.log(loginObject);
+    }
 
     return (
         <div className="card-container">
@@ -19,9 +51,13 @@ function Login() {
                     </Typography>
 
                     <TextField
+                        // PASO 2 asociar evento que detecta c/cambio en el input
+                        onChange={handleInputChange}
                         className="input"
+
+                        // PASO 3 crear prop name con el nombre que desee guardar en mi estado como KEY { key: value }
+                        name="email"
                         required
-                        id="outlined-required"
                         label="Email"
                         InputProps={{
                             endAdornment: (
@@ -29,10 +65,15 @@ function Login() {
                             )
                         }}
                     />
+
                     <TextField
+                        // PASO 2 asociar evento que detecta c/cambio en el input
+                        onChange={handleInputChange}
+
+                        // PASO 3 crear prop name con el nombre que desee guardar en mi estado como KEY { key: value }
+                        name="password"
                         className="input"
                         required
-                        id="outlined-required"
                         label="Password"
                         type="password"
                         InputProps={{
@@ -41,8 +82,8 @@ function Login() {
                             )
                         }}
                     />
-
-                    <Button variant="contained" style={{ marginTop: 80 }}>Enviar</Button>
+                    {/**  PASO 5 creamos evento onClick y creamos funcion para asociar  */}
+                    <Button variant="contained" style={{ marginTop: 80 }} onClick={() => sendLoginRequest()}>Enviar</Button>
                 </CardContent>
             </Card>
         </div>
