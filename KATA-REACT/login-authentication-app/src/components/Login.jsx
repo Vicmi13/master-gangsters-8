@@ -3,16 +3,21 @@ import React, { useState } from 'react'
 import { Alert, AlertTitle, Button, Card, CardContent, TextField, Typography } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import EmailIcon from '@mui/icons-material/Email';
+import { useHistory } from 'react-router-dom'
 import './Login.css'
 import validateEmail from '../utils/utilities';
 import loginService from '../services/Auth.services';
 
 function Login() {
+    // eslint-disable-next-line no-unused-vars
+    const history = useHistory();
 
     // PASO 1 CREAR estado para guardar valores de INPUTS
     const [loginObject, setLoginObject] = useState({})
     const [showError, setShowError] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
+
+    
 
     const handleInputChange = ({ target: { name, value } }) => {
         // PASO 4 recuperar valores de input y setear en ESTADO
@@ -59,11 +64,11 @@ function Login() {
         loginService(loginObject)
         .then( result  => {
             console.log('resultLogin', result);
-        })
-        .catch(error => {
-            console.log('error', error);
+            // history.push('/dashboard')
+        }) .catch(error => {
+            console.log('error', error.data);
             setShowError(true)
-            setErrorMessage('Servicio de login caido')
+            setErrorMessage(error.data?.message || 'Error generico')
         })
         
     }

@@ -10,9 +10,11 @@ const loginService = (formBody) => {
             // console.log('status', status)
             resolve(data)
         })
-        .catch(error => {
-            console.log('error', error)
-            reject(error)
+        .catch( ({ response}) => {
+            /* Aplicamos destructuring */
+            // console.log('error', error.response)
+            // const { response} = error
+            reject(response)
         })
      })
        

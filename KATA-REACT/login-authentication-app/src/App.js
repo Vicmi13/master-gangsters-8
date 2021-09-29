@@ -1,13 +1,29 @@
 import React from 'react'
-import Button from '@mui/material/Button';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
+import Login from './components/Login';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
-    <div className="App">
-      <h3>Login</h3>
-      <Button variant="contained">Hello World</Button>
-    </div>
+    <Router> 
+
+      <Switch>
+        
+        <Route exact path="/">
+            <Login />
+         </Route> 
+         <Route  path="/login" component={Login} />
+         
+         <Route path="/dashboard">
+            <h4> dashboard</h4>
+         </Route> 
+
+          {/* Ruta para algo not found */}
+         <Route component={NotFound} />
+
+      </Switch>
+    </Router>
   );
 }
 
