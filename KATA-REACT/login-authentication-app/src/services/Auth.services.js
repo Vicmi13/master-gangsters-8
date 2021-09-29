@@ -5,7 +5,7 @@ const loginService = (formBody) => {
     axios.post(`${URL_BACKEND}/auth`, formBody)
         .then(data => {
             console.log(data)
-            // return data
+            return data
         })
         .catch(error => {
             console.log('error', error)

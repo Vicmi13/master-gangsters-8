@@ -4,7 +4,8 @@ import { Button, Card, CardContent, TextField, Typography } from '@mui/material'
 import LockIcon from '@mui/icons-material/Lock';
 import EmailIcon from '@mui/icons-material/Email';
 import './Login.css'
-import loginService from '../services/Auth.services';
+import validateEmail from '../utils/utilities';
+// import loginService from '../services/Auth.services';
 
 function Login() {
 
@@ -22,9 +23,6 @@ function Login() {
          * */
         setLoginObject({ ...loginObject, [name]: value })
 
-        // completar la respuesta de la promesa
-        // RECORDAR cambiar URL_BACKEND  
-        loginService(loginObject)
     }
 
     const sendLoginRequest = () => {
@@ -34,9 +32,32 @@ function Login() {
          * EXTRA Mostar componente de alertas de Material UI
          * EXTRA 2 Validar por regex el email
          */
+        
+
+        /** Se valida el tamaño vacio*/
+        if( loginObject.email.length === 0) {
+            console.log('El email se encuentra vacio, ingresar correo')
+            return 
+        } 
+        if(loginObject.password.length === 0) {
+            console.log('El password se encuentra vacio, ingresar valor')
+            return 
+        } 
+
+         /** Se valida el email formato correcto*/
+        const emailValidation = validateEmail(loginObject.email)
+        
+        if(!emailValidation) {
+            console.log('Email con formato incorrecto')
+            return 
+        }
 
         // PASO 6 
         console.log(loginObject);
+
+
+        // RECORDAR cambiar URL_BACKEND  
+        // loginService(loginObject)
     }
 
     return (
