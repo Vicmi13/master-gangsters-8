@@ -64,7 +64,7 @@ function Login() {
         loginService(loginObject)
         .then( result  => {
             console.log('resultLogin', result);
-            // history.push('/dashboard')
+            history.push('/dashboard')
         }) .catch(error => {
             console.log('error', error.data);
             setShowError(true)
@@ -75,6 +75,7 @@ function Login() {
 
     return (
         <div className="card-container">
+
             <Card className="card" elevation={4} >
                 <CardContent>
                     <Typography variant="h5" style={{ textAlign: "center" }} >
