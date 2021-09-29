@@ -5,7 +5,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import EmailIcon from '@mui/icons-material/Email';
 import './Login.css'
 import validateEmail from '../utils/utilities';
-// import loginService from '../services/Auth.services';
+import loginService from '../services/Auth.services';
 
 function Login() {
 
@@ -55,11 +55,17 @@ function Login() {
             return 
         }
 
-        // PASO 6 
-        console.log(loginObject);
-
-        // RECORDAR cambiar URL_BACKEND  
-        // loginService(loginObject)
+        // PASO 6 Consumir endpoint login 
+        loginService(loginObject)
+        .then( result  => {
+            console.log('resultLogin', result);
+        })
+        .catch(error => {
+            console.log('error', error);
+            setShowError(true)
+            setErrorMessage('Servicio de login caido')
+        })
+        
     }
 
     return (
