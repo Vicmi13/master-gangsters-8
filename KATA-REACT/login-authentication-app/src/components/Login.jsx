@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 // import Button from '@mui/material/Button';
-import { Button, Card, CardContent, TextField, Typography } from '@mui/material';
+import { Alert, AlertTitle, Button, Card, CardContent, TextField, Typography } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import EmailIcon from '@mui/icons-material/Email';
 import './Login.css'
@@ -11,6 +11,8 @@ function Login() {
 
     // PASO 1 CREAR estado para guardar valores de INPUTS
     const [loginObject, setLoginObject] = useState({})
+    const [showError, setShowError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
 
     const handleInputChange = ({ target: { name, value } }) => {
         // PASO 4 recuperar valores de input y setear en ESTADO
@@ -33,28 +35,28 @@ function Login() {
          * EXTRA 2 Validar por regex el email
          */
         
-
         /** Se valida el tamaño vacio*/
-        if( loginObject.email.length === 0) {
-            console.log('El email se encuentra vacio, ingresar correo')
+        if (loginObject.email === undefined || loginObject.email.length === 0) {
+            setErrorMessage('El email se encuentra vacio')
+            setShowError(true)
             return 
         } 
-        if(loginObject.password.length === 0) {
-            console.log('El password se encuentra vacio, ingresar valor')
-            return 
+        if (loginObject.password === undefined || loginObject.password.length === 0) {
+            setErrorMessage('El password se encuentra vacio')
+            setShowError(true)
+            return
         } 
 
          /** Se valida el email formato correcto*/
         const emailValidation = validateEmail(loginObject.email)
-        
         if(!emailValidation) {
-            console.log('Email con formato incorrecto')
+            setErrorMessage('Email con formato incorrecto')
+            setShowError(true)
             return 
         }
 
         // PASO 6 
         console.log(loginObject);
-
 
         // RECORDAR cambiar URL_BACKEND  
         // loginService(loginObject)
@@ -106,6 +108,14 @@ function Login() {
                     {/**  PASO 5 creamos evento onClick y creamos funcion para asociar  */}
                     <Button variant="contained" style={{ marginTop: 80 }} onClick={() => sendLoginRequest()}>Enviar</Button>
                 </CardContent>
+                
+
+                {showError && (
+                    <Alert severity="error">
+                        <AlertTitle>Error</AlertTitle>
+                        {errorMessage}
+                    </Alert>)
+                }
             </Card>
         </div>
 
