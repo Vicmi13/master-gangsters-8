@@ -23,6 +23,24 @@ const Dashboard = () => {
           </Typography>
         </Route>
 
+        <Route path="/dashboard/usuarios">
+          <Typography
+            variant="h6"
+            style={{ textAlign: "center", color: "orange" }}
+          >
+            usuarios
+          </Typography>
+        </Route>
+
+        <Route path="/dashboard/items">
+          <Typography
+            variant="h6"
+            style={{ textAlign: "center", color: "orange" }}
+          >
+            items
+          </Typography>
+        </Route>
+
         <Route>
           <Typography
             variant="h6"
