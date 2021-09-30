@@ -1,5 +1,7 @@
 .card-container {
   background: url("./../assets/balloon.jpg") no-repeat center center fixed;
+  height: 100vh;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
