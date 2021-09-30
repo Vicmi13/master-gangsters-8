@@ -14,7 +14,7 @@ function App() {
         </Route>
         <Route path="/login" component={Login} />
 
-        <Route path="/dash">
+        <Route path="/dashboard">
           <Dashboard />
         </Route>
 
