@@ -8,23 +8,58 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useRouteMatch } from "react-router-dom";
+import { Menu } from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
+import MoreIcon from "@mui/icons-material/MoreVert";
 
 export default function NavBar() {
-  const useRouteM = useRouteMatch();
+  /** estados definidos */
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [showMenu, setShowMenu] = React.useState(false);
 
+  const useRouteM = useRouteMatch();
   /* el path nos sirve para construir rutas relativas al padre */
   const { path } = useRouteM;
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleProfileMenuOpen = (event) => {
+  const handleMenuOpen = (event) => {
+    console.log("event.currentTarget", event.currentTarget);
     setAnchorEl(event.currentTarget);
+    setShowMenu(true);
   };
 
-  // eslint-disable-next-line no-unused-vars
-  const isMenuOpen = Boolean(anchorEl);
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    setShowMenu(false);
+  };
 
-  /** Pendiente ver componente material UI y poner igual menu desplegable en ICONO usuario */
+  const renderMenu = (
+    <Menu
+      id="menu-appbar"
+      keepMounted
+      anchorEl={anchorEl}
+      // Posiciones del menu
+      // anchorOrigin={{
+      //   vertical: "top",
+      //   horizontal: "right",
+      // }}
+      // transformOrigin={{
+      //   vertical: "top",
+      //   horizontal: "right",
+      // }}
+      open={showMenu}
+      onClose={handleMenuClose}
+    >
+      <Link
+        to={`${path}/mi-perfil`}
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
+        <MenuItem onClick={handleMenuClose}>Mi Perfil</MenuItem>
+      </Link>
+      <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+        <MenuItem onClick={handleMenuClose}>Cerrar sesión</MenuItem>
+      </Link>
+    </Menu>
+  );
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -36,14 +71,18 @@ export default function NavBar() {
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
+              sx={{ mr: 2, color: "white" }}
             >
               <MenuIcon />
             </IconButton>
           </Link>
 
           <Link to={`${path}/nuevo-usuario`} style={{ textDecoration: "none" }}>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, color: "white" }}
+            >
               Crear usuario
             </Typography>
           </Link>
@@ -53,7 +92,11 @@ export default function NavBar() {
           </Typography>
 
           <Link to={`${path}/usuarios`} style={{ textDecoration: "none" }}>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, color: "white" }}
+            >
               Usuarios
             </Typography>
           </Link>
@@ -62,26 +105,47 @@ export default function NavBar() {
           </Typography>
 
           <Link to={`${path}/items`} style={{ textDecoration: "none" }}>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, color: "white" }}
+            >
               Items
             </Typography>
           </Link>
           <Box sx={{ flexGrow: 1 }} />
+
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
               size="large"
               edge="end"
               aria-label="account of current user"
-              aria-controls="account-user"
+              aria-controls="primary-search-account-menu"
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={handleMenuOpen}
               color="inherit"
             >
               <AccountCircle />
             </IconButton>
           </Box>
+
+          {/* Display in extra small devices */}
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="show more"
+              aria-controls="primary-search-account-menu-mobile"
+              aria-haspopup="true"
+              onClick={handleMenuOpen}
+              color="inherit"
+            >
+              <MoreIcon />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
+
+      {renderMenu}
     </Box>
   );
 }

@@ -1,10 +1,12 @@
 import { Typography } from "@mui/material";
 import React from "react";
-import { Switch, Route } from "react-router";
+// eslint-disable-next-line no-unused-vars
+import { Switch, Route, useRouteMatch } from "react-router";
 import Main from "./Main";
 import NavBar from "./NavBar";
 
 const Dashboard = () => {
+  // const { path, url } = useRouteMatch();
   return (
     <>
       <NavBar />
@@ -38,6 +40,15 @@ const Dashboard = () => {
             style={{ textAlign: "center", color: "orange" }}
           >
             items
+          </Typography>
+        </Route>
+
+        <Route path="/dashboard/mi-perfil">
+          <Typography
+            variant="h6"
+            style={{ textAlign: "center", color: "orange" }}
+          >
+            Mi Perfil
           </Typography>
         </Route>
 
