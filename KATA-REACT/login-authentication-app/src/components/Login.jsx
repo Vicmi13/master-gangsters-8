@@ -4,6 +4,7 @@ import {
   Button,
   Card,
   CardContent,
+  Collapse,
   TextField,
   Typography,
 } from "@mui/material";
@@ -132,13 +133,13 @@ function Login() {
           </Button>
         </CardContent>
 
-        {showError && (
+        <Collapse in={showError}>
           <CustomAlert
-            messageError={errorMessage}
+            message={errorMessage}
             severity="error"
             onCloseAlert={() => setShowError(false)}
           />
-        )}
+        </Collapse>
       </Card>
     </div>
   );

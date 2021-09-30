@@ -4,14 +4,14 @@ import { Alert, AlertTitle } from "@mui/material";
 
 /**
  * props que ENTRAN
- * messageError
+ * message
  * severity
  *
  * props que SALE
  * onClose
  */
 
-const CustomAlert = ({ messageError, severity, onCloseAlert }) => {
+const CustomAlert = ({ message, severity, onCloseAlert }) => {
   const capitalLetter = severity.charAt(0).toUpperCase();
   console.log("capitalLetter", capitalLetter);
 
@@ -25,7 +25,7 @@ const CustomAlert = ({ messageError, severity, onCloseAlert }) => {
       }}
     >
       <AlertTitle> {severity} </AlertTitle>
-      {messageError}
+      {message}
     </Alert>
   );
 };

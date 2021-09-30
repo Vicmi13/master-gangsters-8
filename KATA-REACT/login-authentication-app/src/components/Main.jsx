@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Collapse, Typography } from "@mui/material";
 import React, { useState } from "react";
 import CustomAlert from "./shared/CustomAlert";
 
@@ -12,13 +12,13 @@ function Main() {
         <Button onClick={() => setShowAlert(true)}> Mostrar alerta</Button>
       </Typography>
 
-      {showAlert && (
+      <Collapse in={showAlert}>
         <CustomAlert
-          messageError="Mostrando otro mensaje en alerta"
+          message="Mostrando otro mensaje en alerta"
           severity="info"
           onCloseAlert={() => setShowAlert(false)}
         />
-      )}
+      </Collapse>
     </div>
   );
 }
