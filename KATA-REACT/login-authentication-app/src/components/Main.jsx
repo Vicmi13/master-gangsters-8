@@ -16,6 +16,7 @@ function Main() {
         <CustomAlert
           messageError="Mostrando otro mensaje en alerta"
           severity="info"
+          onCloseAlert={() => setShowAlert(false)}
         />
       )}
     </div>

@@ -98,6 +98,7 @@ function Login() {
           <TextField
             // PASO 2 asociar evento que detecta c/cambio en el input
             onChange={handleInputChange}
+            autoComplete="off"
             className="input"
             // PASO 3 crear prop name con el nombre que desee guardar en mi estado como KEY { key: value }
             name="email"
@@ -132,7 +133,11 @@ function Login() {
         </CardContent>
 
         {showError && (
-          <CustomAlert messageError={errorMessage} severity="error" />
+          <CustomAlert
+            messageError={errorMessage}
+            severity="error"
+            onCloseAlert={() => setShowError(false)}
+          />
         )}
       </Card>
     </div>
