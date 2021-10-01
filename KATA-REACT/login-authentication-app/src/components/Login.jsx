@@ -75,12 +75,11 @@ function Login() {
 
     // PASO 6 Consumir endpoint login
     loginService(loginObject)
-      .then((result) => {
-        console.log("resultLogin", result);
-        const payload = decodedJWT(result.token);
-        console.log("payload", payload);
-        console.log("globalUser", globalUser);
-        // history.push("/dashboard");
+      .then(({ token }) => {
+        const payload = decodedJWT(token);
+        const { id, role, exp } = payload;
+        setGlobalUser({ id, role, expirationToken: exp });
+        history.push("/dashboard");
       })
       .catch((error) => {
         console.log("error", error.data);
