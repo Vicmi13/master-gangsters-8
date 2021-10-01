@@ -5,24 +5,29 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useRouteMatch } from "react-router-dom";
 import { Menu } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import { UserLoggedContext } from "../context/userContext";
 
 export default function NavBar() {
   /** estados definidos */
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [showMenu, setShowMenu] = React.useState(false);
+  /* context */
+  const { globalUser, setGlobalUser } = React.useContext(UserLoggedContext);
+  console.log("globalUser", globalUser);
 
+  const history = useHistory();
   const useRouteM = useRouteMatch();
   /* el path nos sirve para construir rutas relativas al padre */
   const { path } = useRouteM;
 
   const handleMenuOpen = (event) => {
-    console.log("event.currentTarget", event.currentTarget);
+    // console.log("event.currentTarget", event.currentTarget);
     setAnchorEl(event.currentTarget);
     setShowMenu(true);
   };
@@ -30,6 +35,13 @@ export default function NavBar() {
   const handleMenuClose = () => {
     setAnchorEl(null);
     setShowMenu(false);
+  };
+
+  const loggedOut = () => {
+    // setear estado global a vacio
+    setGlobalUser({});
+    // redirect a pagina de login
+    history.push("/");
   };
 
   const renderMenu = (
@@ -56,7 +68,7 @@ export default function NavBar() {
         <MenuItem onClick={handleMenuClose}>Mi Perfil</MenuItem>
       </Link>
       <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-        <MenuItem onClick={handleMenuClose}>Cerrar sesión</MenuItem>
+        <MenuItem onClick={loggedOut}>Cerrar sesión</MenuItem>
       </Link>
     </Menu>
   );
@@ -113,6 +125,21 @@ export default function NavBar() {
               Items
             </Typography>
           </Link>
+          <Typography variant="h5" component="div" style={{ margin: 10 }}>
+            |
+          </Typography>
+
+          {globalUser.role === "ADMIN" && (
+            <Link to={`${path}/videos`} style={{ textDecoration: "none" }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{ flexGrow: 1, color: "white" }}
+              >
+                Videos
+              </Typography>
+            </Link>
+          )}
           <Box sx={{ flexGrow: 1 }} />
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>

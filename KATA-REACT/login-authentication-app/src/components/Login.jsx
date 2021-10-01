@@ -43,6 +43,7 @@ function Login() {
   };
 
   const sendLoginRequest = () => {
+    console.log("globalUser", globalUser);
     /**
      * Validar que ni email ni password vengan vacias,
      * en caso de que una o las dos, mandar alert
@@ -76,9 +77,11 @@ function Login() {
     // PASO 6 Consumir endpoint login
     loginService(loginObject)
       .then(({ token }) => {
+        //Se decodifica token
         const payload = decodedJWT(token);
+        // eslint-disable-next-line no-unused-vars
         const { id, role, exp } = payload;
-        setGlobalUser({ id, role, expirationToken: exp });
+        setGlobalUser({ id, role: "ADMIN", expirationToken: exp });
         history.push("/dashboard");
       })
       .catch((error) => {

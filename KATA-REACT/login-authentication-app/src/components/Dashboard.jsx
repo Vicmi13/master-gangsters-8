@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import React from "react";
 // eslint-disable-next-line no-unused-vars
 import { Switch, Route, useRouteMatch } from "react-router";
+import PrivateRoute from "./helpers/PrivateRoute";
 import Main from "./Main";
 import NavBar from "./NavBar";
 
@@ -13,45 +14,59 @@ const Dashboard = () => {
       <NavBar />
 
       <Switch>
-        <Route exact path={`${path}`}>
-          <Main />
-        </Route>
+        <PrivateRoute exact component={() => <Main />} path={`${path}`} />
 
-        <Route path={`${path}/nuevo-usuario`}>
-          <Typography
-            variant="h6"
-            style={{ textAlign: "center", color: "orange" }}
-          >
-            Nuevos usuarios
-          </Typography>
-        </Route>
+        <PrivateRoute
+          exact
+          component={() => (
+            <Typography
+              variant="h6"
+              style={{ textAlign: "center", color: "orange" }}
+            >
+              Nuevos usuarios
+            </Typography>
+          )}
+          path={`${path}/nuevo-usuario`}
+        />
 
-        <Route path={`${path}/usuarios`}>
-          <Typography
-            variant="h6"
-            style={{ textAlign: "center", color: "orange" }}
-          >
-            usuarios
-          </Typography>
-        </Route>
+        <PrivateRoute
+          exact
+          component={() => (
+            <Typography
+              variant="h6"
+              style={{ textAlign: "center", color: "orange" }}
+            >
+              usuarios
+            </Typography>
+          )}
+          path={`${path}/usuarios`}
+        />
 
-        <Route path={`${path}/items`}>
-          <Typography
-            variant="h6"
-            style={{ textAlign: "center", color: "orange" }}
-          >
-            items
-          </Typography>
-        </Route>
+        <PrivateRoute
+          exact
+          component={() => (
+            <Typography
+              variant="h6"
+              style={{ textAlign: "center", color: "orange" }}
+            >
+              Items
+            </Typography>
+          )}
+          path={`${path}/items`}
+        />
 
-        <Route path={`${path}/mi-perfil`}>
-          <Typography
-            variant="h6"
-            style={{ textAlign: "center", color: "orange" }}
-          >
-            Mi Perfil
-          </Typography>
-        </Route>
+        <PrivateRoute
+          exact
+          component={() => (
+            <Typography
+              variant="h6"
+              style={{ textAlign: "center", color: "orange" }}
+            >
+              Mi Perfil
+            </Typography>
+          )}
+          path={`${path}/mi-perfil`}
+        />
 
         <Route>
           <Typography
