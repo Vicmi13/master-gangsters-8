@@ -24,11 +24,10 @@ function App() {
                 </Route>
               </>
             )}
-
-            {/* Ruta para algo not found */}
-            <Route component={NotFound} />
           </UserLoggedContext.Consumer>
         </UserProvider>
+        {/* Ruta para algo not found */}
+        <Route component={NotFound} />
       </Switch>
     </Router>
   );

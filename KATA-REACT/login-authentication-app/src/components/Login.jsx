@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 // import Button from '@mui/material/Button';
 import {
   Button,
@@ -15,6 +15,7 @@ import "./Login.css";
 import { decodedJWT, validateEmail } from "../utils/utilities";
 import loginService from "../services/Auth.services";
 import CustomAlert from "./shared/CustomAlert";
+import { UserLoggedContext } from "../context/userContext";
 
 function Login() {
   // eslint-disable-next-line no-unused-vars
@@ -23,8 +24,11 @@ function Login() {
   // PASO 1 CREAR estado para guardar valores de INPUTS
   const [loginObject, setLoginObject] = useState({});
   const [showError, setShowError] = useState(false);
-  // eslint-disable-next-line no-unused-vars
   const [errorMessage, setErrorMessage] = useState("");
+
+  /** context */
+  // eslint-disable-next-line no-unused-vars
+  const { globalUser, setGlobalUser } = useContext(UserLoggedContext);
 
   const handleInputChange = ({ target: { name, value } }) => {
     // PASO 4 recuperar valores de input y setear en ESTADO
@@ -75,6 +79,7 @@ function Login() {
         console.log("resultLogin", result);
         const payload = decodedJWT(result.token);
         console.log("payload", payload);
+        console.log("globalUser", globalUser);
         // history.push("/dashboard");
       })
       .catch((error) => {
