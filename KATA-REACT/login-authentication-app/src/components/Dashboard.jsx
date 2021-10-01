@@ -6,17 +6,18 @@ import Main from "./Main";
 import NavBar from "./NavBar";
 
 const Dashboard = () => {
-  // const { path, url } = useRouteMatch();
+  const { path } = useRouteMatch();
+
   return (
     <>
       <NavBar />
 
       <Switch>
-        <Route exact path="/dashboard">
+        <Route exact path={`${path}`}>
           <Main />
         </Route>
 
-        <Route path="/dashboard/nuevo-usuario">
+        <Route path={`${path}/nuevo-usuario`}>
           <Typography
             variant="h6"
             style={{ textAlign: "center", color: "orange" }}
@@ -25,7 +26,7 @@ const Dashboard = () => {
           </Typography>
         </Route>
 
-        <Route path="/dashboard/usuarios">
+        <Route path={`${path}/usuarios`}>
           <Typography
             variant="h6"
             style={{ textAlign: "center", color: "orange" }}
@@ -34,7 +35,7 @@ const Dashboard = () => {
           </Typography>
         </Route>
 
-        <Route path="/dashboard/items">
+        <Route path={`${path}/items`}>
           <Typography
             variant="h6"
             style={{ textAlign: "center", color: "orange" }}
@@ -43,7 +44,7 @@ const Dashboard = () => {
           </Typography>
         </Route>
 
-        <Route path="/dashboard/mi-perfil">
+        <Route path={`${path}/mi-perfil`}>
           <Typography
             variant="h6"
             style={{ textAlign: "center", color: "orange" }}

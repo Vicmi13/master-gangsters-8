@@ -12,7 +12,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import EmailIcon from "@mui/icons-material/Email";
 import { useHistory } from "react-router-dom";
 import "./Login.css";
-import validateEmail from "../utils/utilities";
+import { decodedJWT, validateEmail } from "../utils/utilities";
 import loginService from "../services/Auth.services";
 import CustomAlert from "./shared/CustomAlert";
 
@@ -73,7 +73,9 @@ function Login() {
     loginService(loginObject)
       .then((result) => {
         console.log("resultLogin", result);
-        history.push("/dashboard");
+        const payload = decodedJWT(result.token);
+        console.log("payload", payload);
+        // history.push("/dashboard");
       })
       .catch((error) => {
         console.log("error", error.data);
