@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from "react";
+import PropTypes from "prop-types";
 import { Alert, AlertTitle } from "@mui/material";
 
 /**
@@ -13,9 +13,6 @@ import { Alert, AlertTitle } from "@mui/material";
 
 const CustomAlert = ({ message, severity, onCloseAlert }) => {
   const capitalLetter = severity.charAt(0).toUpperCase();
-  console.log("capitalLetter", capitalLetter);
-
-  /* Pendiente concatenar letra mayuscula*/
 
   return (
     <Alert
@@ -24,10 +21,20 @@ const CustomAlert = ({ message, severity, onCloseAlert }) => {
         onCloseAlert();
       }}
     >
-      <AlertTitle> {severity} </AlertTitle>
+      <AlertTitle> {capitalLetter + severity.slice(1)} </AlertTitle>
       {message}
     </Alert>
   );
+};
+
+CustomAlert.defaultProps = {
+  message: "Ocurrió un error !!",
+};
+
+CustomAlert.propTypes = {
+  message: PropTypes.string,
+  severity: PropTypes.string.isRequired,
+  onCloseAlert: PropTypes.func.isRequired,
 };
 
 export default CustomAlert;
