@@ -1,7 +1,8 @@
-import { Typography } from "@mui/material";
 import React from "react";
+import { Typography } from "@mui/material";
 // eslint-disable-next-line no-unused-vars
 import { Switch, Route, useRouteMatch } from "react-router";
+import Profile from "./core/Profile";
 import PrivateRoute from "./helpers/PrivateRoute";
 import Main from "./Main";
 import NavBar from "./NavBar";
@@ -57,14 +58,7 @@ const Dashboard = () => {
 
         <PrivateRoute
           exact
-          component={() => (
-            <Typography
-              variant="h6"
-              style={{ textAlign: "center", color: "orange" }}
-            >
-              Mi Perfil
-            </Typography>
-          )}
+          component={() => <Profile />}
           path={`${path}/mi-perfil`}
         />
 
