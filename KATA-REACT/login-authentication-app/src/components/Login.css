@@ -1,0 +1,21 @@
+.card-container {
+  background: url("./../assets/balloon.jpg") no-repeat center center fixed;
+  height: 100vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 800px;
+}
+
+.card {
+  width: 300px;
+  height: 480px;
+  text-align: center;
+  background-color: rgb(251, 251, 251) !important;
+  opacity: 0.9;
+}
+
+.input {
+  margin: 15px 0 !important;
+}
