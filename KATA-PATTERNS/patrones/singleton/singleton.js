@@ -1,17 +1,29 @@
 function Guante() {
-    this.name = 'soy el guantele y no hay otro como yo!!';
+    this.name = 'soy el guantele y no hay otro como yo!!'
 }
 
 var GuanteleteSingleton = (function() {
+    
+    var instance;
+
     function createGuante() {
-        if(!guante) {
-            return new Guante();
+        var guante = new Object('yo soy un guante');
+        return guante;
+    }
+
+    return {
+        getGuante: function() {
+            if(!guante) {
+                instance = createGuante();
+            }
+            return instance;
         }
     }
+
 })();
 
-var guante = GuanteleteSingleton.createGuante();
-var guante2 = GuanteleteSingleton.createGuante();
+var guante = GuanteleteSingleton.getGuante();
+var guante2 = GuanteleteSingleton.getGuante();
 
 console.log('guante => ', guante);
 console.log('comparando =>', guante === guante2);
