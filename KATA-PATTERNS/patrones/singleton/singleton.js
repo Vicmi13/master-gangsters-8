@@ -1,7 +1,3 @@
-function Guante() {
-    this.name = 'soy el guantele y no hay otro como yo!!'
-}
-
 var GuanteleteSingleton = (function() {
     
     var instance;
