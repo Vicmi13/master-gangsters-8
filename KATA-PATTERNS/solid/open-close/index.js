@@ -11,6 +11,7 @@ class Media {
 }
 
 class Pdf extends Media {
+    // sobre escritura de imprimir
     imprime() {
         console.log('se imprime en el navegador');
     }
@@ -21,6 +22,7 @@ class Pdf extends Media {
 }
 
 class Word extends Media {
+    // aqui no se sobreescribe
     convert(){
         
     }
@@ -29,5 +31,8 @@ class Word extends Media {
 class Svg extends Media {
     
 }
+
+const obj = new Word();
+obj.imprime();
 
 
