@@ -4,24 +4,32 @@ const fs = require('fs');
 
 const server = http.createServer((request, response) => {
     
+    // 1 Identificar la path que estaba llegando
     const objectPath = url.parse(request.url);
     const path = objectPath.pathname;
-    let completePath = '';
+    let fileSystemPath = '';
 
     console.log('path', path);
     
+    // 2 Validar la path que estabamos solicitando
     if(path == '/') {
-        completePath = 'static/index.html';
+        // 3 setear la ruta donde esta el archivo
+        fileSystemPath = 'static/index.html';
     } else {
-        completePath = `static/${path}`;
+        // 3 setear la ruta donde esta el archivo
+        fileSystemPath = `static/${path}`;
     }
 
-    fs.stat(completePath, error => {
+    // valida que la ruta del archivo exista
+    fs.stat(fileSystemPath, error => {
+        // si existe la ruta has esto
         if(!error) {
-            fs.readFile(completePath, (error, pagina) => {
+            // 4 Leer el archivo
+            fs.readFile(fileSystemPath, (error, archivo) => {
                 if(!error) {
+                    // 5 Generar una response con el archivo solicitado (el que fue leido en fs.readFile)
                     response.writeHead(200, { 'Content-Type': 'text/html' } );
-                    response.write(pagina);
+                    response.write(archivo);
                     response.end();
                 } else {
                     response.writeHead(500, { 'Content-Type': 'text/plain' } );
@@ -29,6 +37,7 @@ const server = http.createServer((request, response) => {
                     response.end();
                 }
             })
+        // si no existe la ruta has esto
         } else {
             // RETO
             response.writeHead(404, { 'Content-Type': 'text/plain' } );
