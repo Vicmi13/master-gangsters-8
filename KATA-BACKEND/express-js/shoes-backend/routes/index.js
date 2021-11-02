@@ -6,7 +6,7 @@ const shoesRoutes = require('./shoes/shoes.router');
 
 function routerApi(app) {
     const router = express.Router();
-    app.use('/api/v1');
+    app.use('/api/v1', router);
     router.use('/shoes', shoesRoutes);
     // router.use('/users', usersRoutes);
     // app.use('/news', newsRoutes);
