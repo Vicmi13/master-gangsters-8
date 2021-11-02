@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 8080;
 
-app.use(express.json()) 
+app.use(express.json());
 
 let shoes = [
     { id: 1, marca: 'noke', price: 200, color: 'red' },
@@ -49,7 +49,28 @@ app.post('/shoes', (req, res) => {
     res.status(201).json(response);
 });
 
-app.get('', (req, res) => {
+// http://localhost:8080/shoes/3
+// DELETE
+
+app.delete('/shoes/:id', (req, res) => {
+    const { id } = req.params;
+    const index = shoes.findIndex(shoe => shoe.id === parseInt(id));
+    let message = '';
+    if(index !== -1) {
+        shoes.splice(index, 1);
+        message = 'deleted';
+    } else {
+        message = 'error'
+    }
+    const response = { message, id }
+    res.json(response);
+});
+
+app.patch('/shoes', (req, res) => {
+
+});
+
+app.put('/shoes', (req, res) => {
 
 });
 
