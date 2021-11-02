@@ -66,12 +66,41 @@ app.delete('/shoes/:id', (req, res) => {
     res.json(response);
 });
 
-app.patch('/shoes', (req, res) => {
+// PARTIAL EDITION
+app.patch('/shoes/:id', (req, res) => {
+    const body = req.body;
+    const { id } = req.params;
+    //
+    const index = shoes.findIndex(shoe => shoe.id === parseInt(id));
+    let message = '';
+    if(index !== -1) {
+        const shoeCopy = shoes[index];
+        shoes[index] = { ...shoeCopy, ...body };
+        message = 'edited ok!';
+    } else {
+        message = 'error'
+    }
+    const response = { message, body }
+    res.json(response);
 
 });
 
-app.put('/shoes', (req, res) => {
-
+// COMPLETE EDITION
+app.put('/shoes/:id', (req, res) => {
+    const body = req.body;
+    const { id } = req.params;
+    //
+    const index = shoes.findIndex(shoe => shoe.id === parseInt(id));
+    let message = '';
+    if(index !== -1) {
+        const shoeCopy = shoes[index];
+        shoes[index] = { ...shoeCopy, ...body };
+        message = 'edited ok!';
+    } else {
+        message = 'error'
+    }
+    const response = { message, body }
+    res.json(response);
 });
 
 app.listen(port, () => {
