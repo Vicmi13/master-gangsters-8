@@ -22,8 +22,9 @@ router.get('/', (req, res) => {
 /* SELECCIONAR ALGO EN ESPECIFICO */
 /* http://localhost:8080/1 */
 
-router.get('/shoes/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     const { id } = req.params;
+    console.log('entrando', id)
     const shoe = serviceShoeObject.findOne(id);
     res.json(shoe);
     // res.status(404).json(error);
