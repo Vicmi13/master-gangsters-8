@@ -1,5 +1,7 @@
 const express = require('express');
 const routerApi = require('./routes')
+// 7 EN EL INDEX PRINCIPAL REQUERIMOS LOS MIDDLEWARES DEL ARCHIVO error.middleware.js
+const { errorLogger, errorHandler } = require('./middlewares/errors.middleware')
 
 const app = express();
 const port = 8080;
@@ -11,3 +13,6 @@ app.listen(port, () => {
 });
 
 routerApi(app);
+// 8 MONTAMOS ESOS MIDDLEWARE SOBRE LA APP
+app.use(errorLogger);
+app.use(errorHandler);

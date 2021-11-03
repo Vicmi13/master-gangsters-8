@@ -34,11 +34,13 @@ class ShoesService {
         const shoe = this.shoes.find(shoe => shoe.id === parseInt(id));
         if(shoe) {
             return shoe;
+        // 1 SELECCIONAR A QUIEN HACERLE UN MIDDLEWARE
+        // 2 AGREGAMOS UN THROW ERROR, PARA QUE PUEDA LANZAR UNA EXCEPCIO
+        } else {
+            throw new Error('ese elemento no se pudo encontrar');
         }
-        // const error = { message: 'elmento no encontrado' };
     }
 
-    
     delete(id) {
         const index = this.shoes.findIndex(shoe => shoe.id === parseInt(id));
         if(index !== -1) {

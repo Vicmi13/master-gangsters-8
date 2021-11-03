@@ -22,12 +22,17 @@ router.get('/', (req, res) => {
 /* SELECCIONAR ALGO EN ESPECIFICO */
 /* http://localhost:8080/1 */
 
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res, error) => {
     const { id } = req.params;
-    console.log('entrando', id)
-    const shoe = serviceShoeObject.findOne(id);
-    res.json(shoe);
-    // res.status(404).json(error);
+    // 3 CAMBIAMOS EL MANEJO DEL ERROR PARA USAR TRY/CATCH Y SI
+    // SE PRESENTABA EL ERROR OBTENER EL THROW NEW ERROR DEL SERVICE
+    try {
+        const shoe = serviceShoeObject.findOne(id);
+        res.json(shoe);
+    } catch (error) {
+        // 4 USAR EL MIDDLEWARE DE ERRORES, PARA QUE GESTIONE ESE ERROR QUE QUEREMOS DEVOLVER
+        next(error);
+    }
 });
 
 router.post('/', async (req, res) => {
