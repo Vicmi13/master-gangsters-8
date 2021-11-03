@@ -30,9 +30,9 @@ router.get('/:id', (req, res) => {
     // res.status(404).json(error);
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     const body = req.body;
-    const createdShoe = serviceShoeObject.create(body);
+    const createdShoe = await serviceShoeObject.create(body);
     const response = { message: 'created!', createdShoe };
     res.status(201).json(response);
 });
@@ -41,9 +41,13 @@ router.post('/', (req, res) => {
 // DELETE
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
-    const message = serviceShoeObject.delete(id);
-    const response = { message, id }
-    res.json(response);
+    try {
+        const { editedId } = serviceShoeObject.delete(id);
+        const response = { id: editedId };
+        res.json(response);
+    } catch(error) {
+        res.status(404).json( { message: error.message } )
+;    }
 });
 
 // PARTIAL EDITION

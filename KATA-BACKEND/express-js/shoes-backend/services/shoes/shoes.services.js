@@ -17,8 +17,12 @@ class ShoesService {
     }
 
     create(shoe) {
-        this.shoes.push(shoe);
-        return shoe;
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                this.shoes.push(shoe);
+                resolve(shoe);
+            }, 5000);
+        })
     }
 
     find() {
@@ -36,17 +40,17 @@ class ShoesService {
 
     
     delete(id) {
-        console.log('entrada', id, typeof id)
         const index = this.shoes.findIndex(shoe => shoe.id === parseInt(id));
-        console.log('index', index)
-        let message = '';
         if(index !== -1) {
+            if(id == 1) {
+                throw new Error('ese elemento no se puede eliminar');
+            }
             this.shoes.splice(index, 1);
-            message = 'deleted';
         } else {
-            message = 'error'
+            status = 404;
+            throw new Error('id not found!');
         }
-        return message;
+        return { id };
     }
 
     
