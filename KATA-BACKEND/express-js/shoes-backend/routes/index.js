@@ -2,10 +2,12 @@ const express = require('express');
 
 const shoesRoutes = require('./shoes/shoes.router');
 // const usersRoutes = require('./users/users.router');
+// const customersRoutes = require('./customers/customers.router');
 // const newRoutes = require('./news/new.router');
 
 function routerApi(app) {
     const router = express.Router();
+    // app.use('/customer', customersRoutes);
     app.use('/api/v1', router);
     router.use('/shoes', shoesRoutes);
     // router.use('/users', usersRoutes);

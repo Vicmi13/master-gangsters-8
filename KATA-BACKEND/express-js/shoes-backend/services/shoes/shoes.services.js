@@ -34,19 +34,47 @@ class ShoesService {
         // const error = { message: 'elmento no encontrado' };
     }
 
-    /*
+    
     delete(id) {
-
+        console.log('entrada', id, typeof id)
+        const index = this.shoes.findIndex(shoe => shoe.id === parseInt(id));
+        console.log('index', index)
+        let message = '';
+        if(index !== -1) {
+            this.shoes.splice(index, 1);
+            message = 'deleted';
+        } else {
+            message = 'error'
+        }
+        return message;
     }
 
-    editPartial(id) {
-
+    
+    editPartial(id, body) {
+        const index = this.shoes.findIndex(shoe => shoe.id === parseInt(id));
+        let message = '';
+        if(index !== -1) {
+            const shoeCopy = this.shoes[index];
+            this.shoes[index] = { ...shoeCopy, ...body };
+            message = 'edited ok!';
+        } else {
+            message = 'error'
+        }
+        return message;
     }
 
-    editFull(id) {
-
+    editFull(id, body) {
+        const index = this.shoes.findIndex(shoe => shoe.id === parseInt(id));
+        let message = '';
+        if(index !== -1) {
+            const shoeCopy = this.shoes[index];
+            this.shoes[index] = { ...shoeCopy, ...body };
+            message = 'edited ok!';
+        } else {
+            message = 'error'
+        }
+        return message;
     }
-    */
 
 }
 

@@ -39,57 +39,29 @@ router.post('/', (req, res) => {
 
 // http://localhost:8080/shoes/3
 // DELETE
-/*
-router.delete('/shoes/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const { id } = req.params;
-    const index = shoes.findIndex(shoe => shoe.id === parseInt(id));
-    let message = '';
-    if(index !== -1) {
-        shoes.splice(index, 1);
-        message = 'deleted';
-    } else {
-        message = 'error'
-    }
+    const message = serviceShoeObject.delete(id);
     const response = { message, id }
     res.json(response);
 });
 
 // PARTIAL EDITION
-router.patch('/shoes/:id', (req, res) => {
+router.patch('/:id', (req, res) => {
     const body = req.body;
     const { id } = req.params;
-    //
-    const index = shoes.findIndex(shoe => shoe.id === parseInt(id));
-    let message = '';
-    if(index !== -1) {
-        const shoeCopy = shoes[index];
-        shoes[index] = { ...shoeCopy, ...body };
-        message = 'edited ok!';
-    } else {
-        message = 'error'
-    }
+    const message = serviceShoeObject.editPartial(id, body);
     const response = { message, body }
     res.json(response);
-
 });
 
 // COMPLETE EDITION
-router.put('/shoes/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     const body = req.body;
     const { id } = req.params;
-    //
-    const index = shoes.findIndex(shoe => shoe.id === parseInt(id));
-    let message = '';
-    if(index !== -1) {
-        const shoeCopy = shoes[index];
-        shoes[index] = { ...shoeCopy, ...body };
-        message = 'edited ok!';
-    } else {
-        message = 'error'
-    }
+    const message = serviceShoeObject.editFull(id, body);
     const response = { message, body }
     res.json(response);
 });
-*/
 
 module.exports = router;
