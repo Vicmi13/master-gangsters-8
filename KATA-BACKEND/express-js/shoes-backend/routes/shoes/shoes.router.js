@@ -47,8 +47,8 @@ router.post('/', async (req, res) => {
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
     try {
-        const { editedId } = serviceShoeObject.delete(id);
-        const response = { id: editedId };
+        const deleteId = serviceShoeObject.delete(id);
+        const response = { id: deleteId };
         res.json(response);
     } catch(error) {
         res.status(404).json( { message: error.message } )

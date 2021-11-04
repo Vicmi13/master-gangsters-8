@@ -49,10 +49,9 @@ class ShoesService {
             }
             this.shoes.splice(index, 1);
         } else {
-            status = 404;
             throw new Error('id not found!');
         }
-        return { id };
+        return id;
     }
 
     
