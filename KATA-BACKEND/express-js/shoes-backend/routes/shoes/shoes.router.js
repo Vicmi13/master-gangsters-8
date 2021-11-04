@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 /* SELECCIONAR ALGO EN ESPECIFICO */
 /* http://localhost:8080/1 */
 
-router.get('/:id', (req, res, error) => {
+router.get('/:id', (req, res, next) => {
     const { id } = req.params;
     // 3 CAMBIAMOS EL MANEJO DEL ERROR PARA USAR TRY/CATCH Y SI
     // SE PRESENTABA EL ERROR OBTENER EL THROW NEW ERROR DEL SERVICE

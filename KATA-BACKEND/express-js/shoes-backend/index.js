@@ -13,6 +13,7 @@ app.listen(port, () => {
 });
 
 routerApi(app);
-// 8 MONTAMOS ESOS MIDDLEWARE SOBRE LA APP
+// 8 MONTAMOS ESOS MIDDLEWARE SOBRE LA APP, LOS MIDDLEWARE TOMAN COMO NEXT
+// EL QUE APAREZCA EN ORDEN EN ESTA SECCION
 app.use(errorLogger);
 app.use(errorHandler);
