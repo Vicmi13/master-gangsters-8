@@ -1,6 +1,7 @@
 /*
 
 */
+const boom = require('@hapi/boom');
 
 class ShoesService {
     constructor() {
@@ -10,9 +11,9 @@ class ShoesService {
 
     createData() {
         this.shoes = [
-            { id: 1, marca: 'noke', price: 200, color: 'red' },
-            { id: 2, marca: 'edidas', price: 100, color: 'white' },
-            { id: 3, marca: 'glexi', price: 300, color: 'black' },
+            { id: 1, marca: 'noke', price: 200, color: 'red', isDeleted: false },
+            { id: 2, marca: 'edidas', price: 100, color: 'white', isDeleted: true },
+            { id: 3, marca: 'glexi', price: 300, color: 'black', isDeleted: true },
         ];
     }
 
@@ -37,19 +38,22 @@ class ShoesService {
         // 1 SELECCIONAR A QUIEN HACERLE UN MIDDLEWARE
         // 2 AGREGAMOS UN THROW ERROR, PARA QUE PUEDA LANZAR UNA EXCEPCIO
         } else {
-            throw new Error('ese elemento no se pudo encontrar');
+            throw boom.notFound('ese elemento no se pudo encontrar');
         }
     }
 
     delete(id) {
+        // 1. not found
+        // 2. forbiden
+        // 3. ok => si se elimina
         const index = this.shoes.findIndex(shoe => shoe.id === parseInt(id));
         if(index !== -1) {
-            if(id == 1) {
-                throw new Error('ese elemento no se puede eliminar');
+            if(!this.shoes[index].isDeleted) {  
+                throw boom.conflict('Hubo un conflicto');
             }
             this.shoes.splice(index, 1);
         } else {
-            throw new Error('id not found!');
+            throw boom.notFound('id not found!');
         }
         return id;
     }

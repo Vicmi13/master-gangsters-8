@@ -44,14 +44,14 @@ router.post('/', async (req, res) => {
 
 // http://localhost:8080/shoes/3
 // DELETE
-router.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res, next) => {
     const { id } = req.params;
     try {
         const deleteId = serviceShoeObject.delete(id);
         const response = { id: deleteId };
         res.json(response);
     } catch(error) {
-        res.status(404).json( { message: error.message } )
+        next(error);
 ;    }
 });
 
