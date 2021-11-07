@@ -46,18 +46,15 @@ class UsersServices {
     }
 
     edit(id, changes) {
-        console.log('en services', id, changes);
         return new Promise((resolve, reject) => {
             setTimeout(() => {  
                 const userIndex = this.users.findIndex(ele => ele.id === parseInt(id));
                 let user = this.users[userIndex];
-                console.log('user', user)
                 if(user) {
                     // { id: 1, name: 'jose', app: 'montoya' }
                     // { name: 'Pepe', apm: 'guzman' }
                     // { id: 1, name: 'Pepe', app: 'montoya', apm: 'guzman' }
                     user = { ...user, ...changes };
-                    console.log('user2', user)
                     this.users[userIndex] = user;
                     resolve('edited OK!');
                 } else {

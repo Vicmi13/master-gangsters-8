@@ -4,8 +4,8 @@ const UsersServices = require('../../services/users/users.services')
 
 const userService = new UsersServices();
 
-// auth
-usersRouter.get('/', (req, res, next) => {
+// get de prueba :  consulta todos los usuarios
+usersRouter.get('/', (req, res) => {
     const response = userService.getData();
     res.json(response);
 });
@@ -36,7 +36,6 @@ usersRouter.post('/', async (req, res, next) => {
 usersRouter.patch('/:id', async (req, res, next) => {
     const { id } = req.params;
     const user = req.body;
-    console.log('en patch', id, user);
     try {
         const msj = await userService.edit(id, user);
         res.json({ message: msj });
