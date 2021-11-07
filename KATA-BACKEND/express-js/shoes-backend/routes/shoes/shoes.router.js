@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const shoesRouter = express.Router();
 const ShoesServices = require('../../services/shoes/shoes.services')
 
 const serviceShoeObject = new ShoesServices();
@@ -7,7 +7,7 @@ const serviceShoeObject = new ShoesServices();
 /* QUERY PARAMS */
 /* FILTRAR UN SET DE DATOS */
 /* http://localhost:8080/shoes?limit=10&page=1 */
-router.get('/', (req, res) => {
+shoesRouter.get('/', (req, res) => {
     const { limit, page } = req.query;
     const shoes = serviceShoeObject.find();
     const response = {
@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 /* SELECCIONAR ALGO EN ESPECIFICO */
 /* http://localhost:8080/1 */
 
-router.get('/:id', (req, res, next) => {
+shoesRouter.get('/:id', (req, res, next) => {
     const { id } = req.params;
     // 3 CAMBIAMOS EL MANEJO DEL ERROR PARA USAR TRY/CATCH Y SI
     // SE PRESENTABA EL ERROR OBTENER EL THROW NEW ERROR DEL SERVICE
@@ -35,7 +35,7 @@ router.get('/:id', (req, res, next) => {
     }
 });
 
-router.post('/', async (req, res) => {
+shoesRouter.post('/', async (req, res) => {
     const body = req.body;
     const createdShoe = await serviceShoeObject.create(body);
     const response = { message: 'created!', createdShoe };
@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
 
 // http://localhost:8080/shoes/3
 // DELETE
-router.delete('/:id', (req, res, next) => {
+shoesRouter.delete('/:id', (req, res, next) => {
     const { id } = req.params;
     try {
         const deleteId = serviceShoeObject.delete(id);
@@ -56,7 +56,7 @@ router.delete('/:id', (req, res, next) => {
 });
 
 // PARTIAL EDITION
-router.patch('/:id', (req, res) => {
+shoesRouter.patch('/:id', (req, res) => {
     const body = req.body;
     const { id } = req.params;
     const message = serviceShoeObject.editPartial(id, body);
@@ -65,7 +65,7 @@ router.patch('/:id', (req, res) => {
 });
 
 // COMPLETE EDITION
-router.put('/:id', (req, res) => {
+shoesRouter.put('/:id', (req, res) => {
     const body = req.body;
     const { id } = req.params;
     const message = serviceShoeObject.editFull(id, body);
@@ -73,4 +73,4 @@ router.put('/:id', (req, res) => {
     res.json(response);
 });
 
-module.exports = router;
+module.exports = shoesRouter;

@@ -14,6 +14,9 @@ class ShoesService {
             { id: 1, marca: 'noke', price: 200, color: 'red', isDeleted: false },
             { id: 2, marca: 'edidas', price: 100, color: 'white', isDeleted: true },
             { id: 3, marca: 'glexi', price: 300, color: 'black', isDeleted: true },
+            { id: 4, marca: 'juuma', price: 111, color: 'black', isDeleted: true },
+            { id: 5, marca: 'pamu', price: 111, color: 'black', isDeleted: true },
+            { id: 6, marca: 'pamu 2', price: 111, color: 'black', isDeleted: true },
         ];
     }
 
