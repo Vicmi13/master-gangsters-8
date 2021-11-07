@@ -34,16 +34,58 @@ class UsersServices {
         })
     }
 
-    create() {
-
+    create(user) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const users = [ ...this.users];
+                users.push(user);
+                this.users = [ ...users ];
+                resolve('new user created!');
+            }, 2000);
+        })
     }
 
-    edit() {
-
+    edit(id, changes) {
+        console.log('en services', id, changes);
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {  
+                const userIndex = this.users.findIndex(ele => ele.id === parseInt(id));
+                let user = this.users[userIndex];
+                console.log('user', user)
+                if(user) {
+                    // { id: 1, name: 'jose', app: 'montoya' }
+                    // { name: 'Pepe', apm: 'guzman' }
+                    // { id: 1, name: 'Pepe', app: 'montoya', apm: 'guzman' }
+                    user = { ...user, ...changes };
+                    console.log('user2', user)
+                    this.users[userIndex] = user;
+                    resolve('edited OK!');
+                } else {
+                    reject(boom.notFound('No se encontro tu informacion'));
+                }
+            }, 2000);
+        })
     }
 
-    delete() {
+    delete(id) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const userIndex = this.users.findIndex(ele => ele.id === parseInt(id));
+                const user = this.users[userIndex];
+                if(user) {
+                    const auxUsers = [ ...this.users ];
+                    auxUsers.splice(userIndex, 1);
+                    this.users = [ ... auxUsers ];
+                    resolve('deleted OK!');
+                } else {
+                    reject(boom.notFound('No se encontro tu informacion'));
+                }
+            }, 2000);
+        })
+    }
 
+    getData(){
+        return this.users;
     }
 
 }
