@@ -1,8 +1,25 @@
-DROP TABLE Colors;
-DROP TABLE Shoes;
+DROP TABLE IF EXISTS Shoes;
+DROP TABLE IF EXISTS Colors;
+DROP TABLE IF EXISTS Types_;
+DROP TABLE IF EXISTS Models;
+DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS Rols;
+DROP TABLE IF EXISTS Genre;
+DROP TABLE IF EXISTS Tickets;
+DROP TABLE IF EXISTS Cajero;
 
 CREATE TABLE Colors (
   idColor SERIAL PRIMARY KEY,
+  description VARCHAR
+);
+
+CREATE TABLE Types_ (
+  idType SERIAL PRIMARY KEY,
+  description VARCHAR
+);
+
+CREATE TABLE Models (
+  idModel SERIAL PRIMARY KEY,
   description VARCHAR
 );
 
@@ -14,6 +31,66 @@ CREATE TABLE Shoes (
   idType INT
 );
 
+
+CREATE TABLE Cajeros (
+  idCajero SERIAL PRIMARY KEY,
+  name VARCHAR
+);
+
+
+CREATE TABLE Tickets (
+  idTicket SERIAL PRIMARY KEY,
+  fechaHora timestamp,
+  idCajero INT,
+  amount FLOAT
+);
+
+CREATE TABLE Genre (
+  idGenre SERIAL PRIMARY KEY,
+  description VARCHAR
+);
+
+CREATE TABLE  Rol (
+  idRol SERIAL PRIMARY KEY,
+  description VARCHAR
+);
+
+CREATE TABLE Users (
+  idUser SERIAL PRIMARY KEY,
+  name VARCHAR,
+  app VARCHAR,
+  apm VARCHAR,
+  idGenre INT,
+  edad VARCHAR, -- SI EL VALOR NO SE VA OPERAR ALGEBRAICAMENTE SE RECOMIENDA USAR VARCHAR
+  phone VARCHAR, -- SI EL VALOR NO SE VA OPERAR ALGEBRAICAMENTE SE RECOMIENDA USAR VARCHAR
+  idRol INT
+);
+
+-- CONSTRAINTS SHOES
 ALTER TABLE Shoes ADD CONSTRAINT shoes_colors_fk
     FOREIGN KEY (idColor)
     REFERENCES Colors (idColor);
+
+ALTER TABLE Shoes ADD CONSTRAINT shoes_types_fk
+    FOREIGN KEY (idType)
+    REFERENCES Types_ (idType);
+
+ALTER TABLE Shoes ADD CONSTRAINT shoes_models_fk
+    FOREIGN KEY (idModel)
+    REFERENCES Models (idModel);
+
+-- CONSTRAINTS USERS
+ALTER TABLE Users ADD CONSTRAINT users_genres_fk
+    FOREIGN KEY (idGenre)
+    REFERENCES Genre (idGenre);
+
+ALTER TABLE Users ADD CONSTRAINT users_rols_fk
+    FOREIGN KEY (idRol)
+    REFERENCES Rol (idRol);
+	
+-- CONSTRAINTS TICKETS
+ALTER TABLE Tickets ADD CONSTRAINT tickets_cajeros_fk
+    FOREIGN KEY (idCajero)
+    REFERENCES Cajeros (idCajero);
+
+
