@@ -1,0 +1,54 @@
+Table Shoe {
+  idShoe int [pk, increment]
+  description varchar
+  idColor int [ref: > Color.idColor]
+  idModel int [ref: > Model.idModel]
+  idType int [ref: > Type.idType]
+}
+
+Table Color {
+  idColor int [pk]
+  description varchar
+}
+
+
+Table Type {
+  idType int [pk, increment]
+  description varchar
+}
+
+Table Model {
+  idModel int [pk, increment]
+  description varchar
+}
+
+Table User {
+  idUser int [pk, increment]
+  name varchar
+  app varchar
+  apm varchar
+  idGenre int [ref: > Genre.idGenre]
+  edad varchar
+  idRol int [ref: > Rol.idRol]
+}
+
+Table Ticket {
+  idTicket int [pk, increment]
+  fecha date
+  hora timestamp
+  idCajero int
+  amount double
+}
+
+Table Genre {
+  idGenre int [pk, increment]
+  description varchar
+}
+
+Table Rol {
+  idRol int [pk, increment]
+  description varchar
+}
+
+
+
