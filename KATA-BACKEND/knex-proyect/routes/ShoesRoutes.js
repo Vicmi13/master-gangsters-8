@@ -22,5 +22,7 @@ router.post("/", async (req, res) => {
   try {
     const result = await ShoesService.create(newShoe);
     res.status(200).json({ message: "New shoe created", shoes: result });
-  } catch (error) {}
+  } catch (error) {
+    res.status(400).json({ message: "Error found", error });
+  }
 });
