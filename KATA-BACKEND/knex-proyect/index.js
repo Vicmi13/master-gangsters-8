@@ -1,5 +1,5 @@
 const express = require("express");
-
+const mainRouter = require("./routes");
 const app = express();
 
 // processs variable global de Node
@@ -8,6 +8,14 @@ const PORT = process.env.PORT || 8080;
 
 // MIDDLEWARES
 app.use(express.json());
+
+// // DESDE REACT se ejecutar GET  localhost:8080
+app.get("/", (req, res) =>
+  res.status(205).json({ message: "Este es el backend de la G8" })
+);
+
+// Index de rutas
+mainRouter(app);
 
 app.listen(PORT, () => {
   console.log(`SERVIDOR corriendo en puerto: ${PORT}`);

@@ -1,5 +1,6 @@
 const express = require("express");
 const ShoesService = require("../services/shoes/shoes.services");
+
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -12,7 +13,6 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
   const { price, brand, color } = req.body;
-
   const newShoe = {
     price,
     brand,
@@ -26,3 +26,5 @@ router.post("/", async (req, res) => {
     res.status(400).json({ message: "Error found", error });
   }
 });
+
+module.exports = router;
