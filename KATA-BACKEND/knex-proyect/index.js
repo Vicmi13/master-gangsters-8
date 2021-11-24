@@ -14,6 +14,8 @@ app.get("/", (req, res) =>
   res.status(205).json({ message: "Este es el backend de la G8" })
 );
 
+console.log("variable de entorno", process.env.NODE_ENV);
+
 // Index de rutas
 mainRouter(app);
 
