@@ -9,4 +9,7 @@ const env = process.env.NODE_ENV;
 // knexfile['staging']
 // knexfile['production']
 
+// Aqui van las credenciales para conectarnos a la bd
 const knexInstance = knex(knexfile[env]);
+
+module.exports = knexInstance;

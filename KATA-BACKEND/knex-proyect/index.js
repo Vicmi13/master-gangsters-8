@@ -11,7 +11,7 @@ app.use(express.json());
 
 // // DESDE REACT se ejecutar GET  localhost:8080
 app.get("/", (req, res) =>
-  res.status(205).json({ message: "Este es el backend de la G8" })
+  res.json({ message: "Este es el backend de la G8" })
 );
 
 console.log("variable de entorno", process.env.NODE_ENV);
