@@ -55,9 +55,20 @@ const updateById = async (req, res) => {
   }
 };
 
+const deleteById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const rowDeleted = await Genre.deleteById(id);
+    res.status(204).json({ message: "Row deleted", result: rowDeleted });
+  } catch (error) {
+    res.json({ message: "Error in deleted row", error });
+  }
+};
+
 module.exports = {
   create,
   findAll,
   findOneById,
   updateById,
+  deleteById,
 };

@@ -18,16 +18,20 @@ const getById = (id) => {
 };
 
 const updateById = (id, body) => {
-  console.log("body in model", body);
-  console.log("id", id);
+  // console.log("body in model", body);
+  // console.log("id", id);
   return knexInstance("genres").where({ id }).update(body);
 };
 
-// Delete físico PENDIENTE
+// Delete FISICO
+const deleteById = (id) => {
+  return knexInstance("genres").del().where({ id });
+};
 
 module.exports = {
   create,
   getAll,
   getById,
   updateById,
+  deleteById,
 };

@@ -12,4 +12,6 @@ router.get("/:id", GenreController.findOneById);
 
 router.patch("/:id", GenreController.updateById);
 
+router.delete("/:id", GenreController.deleteById);
+
 module.exports = router;
