@@ -13,7 +13,6 @@ const getAll = () => {
 
 const getById = (id) => {
   // return knexInstance("genres").select("id", "description").where({ id });
-
   return knexInstance("genres").where({ id }).select("id", "description");
 };
 
