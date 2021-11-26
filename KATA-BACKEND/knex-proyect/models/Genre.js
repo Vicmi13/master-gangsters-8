@@ -1,36 +1,13 @@
 // Se pasa la config || instancia de Knex
 const knexInstance = require("../config");
 
-const create = (bodyGenre) => {
-  // knex regresa una promesa
-  return knexInstance("genres").insert(bodyGenre); // { description: 'male' }
-  // OUTPUT insert into `genres` (`description`) values ('male')
-};
+// Recuperar el modelo generico
+const genericModelKnex = require("../utils/GenericKnex");
 
-const getAll = () => {
-  return knexInstance("genres").select("id", "description");
-};
+const table = "genres";
+const columns = ["id", "description"];
+const tableId = "id";
 
-const getById = (id) => {
-  // return knexInstance("genres").select("id", "description").where({ id });
-  return knexInstance("genres").where({ id }).select("id", "description");
-};
+const Genre = genericModelKnex(knexInstance, table, columns, tableId);
 
-const updateById = (id, body) => {
-  // console.log("body in model", body);
-  // console.log("id", id);
-  return knexInstance("genres").where({ id }).update(body);
-};
-
-// Delete FISICO
-const deleteById = (id) => {
-  return knexInstance("genres").del().where({ id });
-};
-
-module.exports = {
-  create,
-  getAll,
-  getById,
-  updateById,
-  deleteById,
-};
+module.exports = Genre;
