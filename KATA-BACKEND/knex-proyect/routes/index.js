@@ -20,8 +20,8 @@ function mainRouter(app) {
 
   // Definimo rutas
   // api/backend-g8/v1/genres
-  router.use("/shoes", ShoesRoutes);
   router.use("/genres", GenresRoutes);
+  router.use("/shoes", ShoesRoutes);
 }
 
 module.exports = mainRouter;
