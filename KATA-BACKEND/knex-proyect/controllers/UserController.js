@@ -10,6 +10,7 @@ const create = (req, res) => {
     email,
     id_genres,
     id_shoes,
+    // optional
     is_active,
     password,
   } = req.body;
@@ -43,7 +44,9 @@ const create = (req, res) => {
 
 const findAll = async (req, res) => {
   try {
-    const data = await User.getAll();
+    const data = await User.findAllWithJoins(); // User.getAll()
+    // VALIDAR  si es tabla vacia if(!data.length)
+    console.log("data", data);
     res.json({ message: "Users recover successfully", result: data });
   } catch (error) {
     console.log(error);
