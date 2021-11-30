@@ -5,7 +5,7 @@ const knexInstance = require("../config");
 const genericModelKnex = require("../utils/GenericKnex");
 
 const table = "genres";
-const columns = ["id", "description"];
+const columns = ["id", "value"];
 const tableId = "id";
 
 const Genre = genericModelKnex(knexInstance, table, columns, tableId);

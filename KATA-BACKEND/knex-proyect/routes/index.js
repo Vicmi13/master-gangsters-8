@@ -2,6 +2,7 @@ const express = require("express");
 
 const ShoesRoutes = require("../routes/ShoesRoutes");
 const GenresRoutes = require("../routes/GenreRoutes");
+const UsersRoutes = require("../routes/UsersRoutes");
 
 function mainRouter(app) {
   // instancia de Router
@@ -22,6 +23,7 @@ function mainRouter(app) {
   // api/backend-g8/v1/genres
   router.use("/genres", GenresRoutes);
   router.use("/shoes", ShoesRoutes);
+  router.use("/users", UsersRoutes);
 }
 
 module.exports = mainRouter;

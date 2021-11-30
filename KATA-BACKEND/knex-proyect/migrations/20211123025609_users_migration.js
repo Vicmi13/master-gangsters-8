@@ -7,6 +7,7 @@ exports.up = async (knex) => {
     table.string("second_last_name");
     table.string("phone_number");
     table.string("edad");
+
     table.string("email").unique();
 
     table.timestamp("created_at").defaultTo(knex.fn.now());

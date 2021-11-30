@@ -25,6 +25,7 @@ const findAll = async (req, res) => {
     const data = await Genre.getAll();
     res.json({ message: "Rows recover successfully", result: data });
   } catch (error) {
+    console.log(error);
     res.json({ message: "Error recover all rows", error });
   }
 };
