@@ -3,6 +3,7 @@ const express = require("express");
 const ShoesRoutes = require("../routes/ShoesRoutes");
 const GenresRoutes = require("../routes/GenreRoutes");
 const UsersRoutes = require("../routes/UsersRoutes");
+const AuthRoutes = require("../routes/AuthRoutes");
 
 function mainRouter(app) {
   // instancia de Router
@@ -24,6 +25,7 @@ function mainRouter(app) {
   router.use("/genres", GenresRoutes);
   router.use("/shoes", ShoesRoutes);
   router.use("/users", UsersRoutes);
+  router.use("/auth", AuthRoutes);
 }
 
 module.exports = mainRouter;
