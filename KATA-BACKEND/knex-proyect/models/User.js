@@ -27,23 +27,28 @@ User.findAllWithJoins = () => {
   //   .from(table)
   //   .join("shoes", "users.id_shoes", "=", "shoes.shoe_id");
 
-  return knexInstance(table)
-    .join("shoes", "users.id_shoes", "=", "shoes.shoe_id")
-    .join("genres", "users.id_genres", "=", "genres.id")
-    .select(
-      "users.first_name",
-      "users.last_name",
-      "users.second_last_name",
-      "users.email",
-      "users.phone_number",
-      // "users.is_active",
-      "shoes.shoe_id",
-      "shoes.description",
-      "shoes.is_active",
-      "shoes.quantity",
-      "genres.id",
-      "genres.value"
-    );
+  return (
+    knexInstance(table)
+      // .join("tabla_foranea", "tablaActual.id_en_tu_tabla(nombre que sea)", "=", "tabla_foranea.columna_PK")
+      .join("shoes", "users.id_shoes", "=", "shoes.shoe_id")
+      .join("genres", "users.id_genres", "=", "genres.id")
+      .select(
+        "users.first_name",
+        "users.last_name",
+        "users.second_last_name",
+        "users.email",
+        "users.phone_number",
+        "users.password",
+        // 'table_b.id as b_id'
+        "users.is_active as user_is_active",
+        "shoes.shoe_id",
+        "shoes.description",
+        "shoes.is_active as shoes_is_active",
+        "shoes.quantity",
+        "genres.id",
+        "genres.value"
+      )
+  );
 
   /**
    * The join builder can be used to specify joins between tables,
