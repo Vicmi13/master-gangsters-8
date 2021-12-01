@@ -1,6 +1,7 @@
 const { User } = require("../models");
+const hashPassword = require("../utils/hashPassword");
 
-const create = (req, res) => {
+const create = async (req, res) => {
   const {
     first_name,
     last_name,
@@ -15,31 +16,41 @@ const create = (req, res) => {
     password,
   } = req.body;
 
-  const newUser = {
-    first_name,
-    last_name,
-    second_last_name,
-    phone_number,
-    age,
-    email,
-    id_genres,
-    id_shoes,
-    is_active,
-    password,
-  };
+  try {
+    const hashedPassword = await hashPassword(password);
+    const newUser = {
+      first_name,
+      last_name,
+      second_last_name,
+      phone_number,
+      age,
+      email,
+      id_genres,
+      id_shoes,
+      is_active,
+      password: hashedPassword,
+    };
 
-  return User.create(newUser)
-    .then((data) => {
-      console.log("result", data.rowCount);
-      return res.status(201).json({
-        message: "User created succcessfully",
-        result: data.rowCount,
+    // const data = await User.create(newUser)
+    return User.create(newUser)
+      .then((data) => {
+        console.log("result", data.rowCount);
+        return res.status(201).json({
+          message: "User created succcessfully",
+          result: data.rowCount,
+        });
+      })
+      .catch((err) => {
+        console.log("error", err);
+        return res
+          .status(400)
+          .json({ message: "Row not inserted", error: err });
       });
-    })
-    .catch((err) => {
-      console.log("error", err);
-      return res.status(400).json({ message: "Row not inserted", error: err });
-    });
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ message: "User not created successfully", error });
+  }
 };
 
 const findAll = async (req, res) => {
