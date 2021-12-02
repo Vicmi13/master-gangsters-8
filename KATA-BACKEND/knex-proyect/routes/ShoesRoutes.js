@@ -1,8 +1,10 @@
 const express = require("express");
 const { ShoesController } = require("../controllers");
 const router = express.Router();
+const validateJWT = require("../middleware/validateToken");
 
-router.post("/", ShoesController.create);
+// Esta ruta debe de estar protegida
+router.post("/", validateJWT, ShoesController.create);
 
 router.get("/", ShoesController.findAll);
 

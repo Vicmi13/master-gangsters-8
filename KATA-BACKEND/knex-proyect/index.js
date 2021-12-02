@@ -1,5 +1,6 @@
 const express = require("express");
 const mainRouter = require("./routes");
+const { printtName, printTime } = require("./middleware/consolesMiddleware");
 
 const app = express();
 
@@ -11,7 +12,7 @@ const PORT = process.env.PORT || 8080;
 app.use(express.json());
 
 // // DESDE REACT se ejecutar GET  localhost:8080
-app.get("/", (req, res) =>
+app.get("/", printTime, printtName, (req, res) =>
   res.json({ message: "Este es el backend de la G8" })
 );
 

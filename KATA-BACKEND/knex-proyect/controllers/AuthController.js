@@ -37,6 +37,7 @@ const login = async (req, res) => {
           email,
           completeName: `${first_name} ${last_name} ${second_last_name}`,
           id,
+          rol: "Admin",
         },
         privateKey,
         {
