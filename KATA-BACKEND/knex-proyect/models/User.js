@@ -21,6 +21,10 @@ const tableId = "id";
 
 const User = genericModelKnex(knexInstance, table, columns, tableId);
 
+User.getByEmail = (email) => {
+  return knexInstance(table).where({ email });
+};
+
 User.findAllWithJoins = () => {
   // OTRA FORMA DE HACER EL QUERY
   // return knexInstance
