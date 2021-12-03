@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "development": "NODE_ENV=development nodemon index.js",
-    "staging": "NODE_ENV=staging nodemon index.js",
-    "production": "NODE_ENV=production node index.js",
+    "development": "nodemon index.js",
+    "production": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +14,8 @@
   "dependencies": {
     "@hapi/boom": "^9.1.4",
     "bcrypt": "^5.0.1",
+    "celebrate": "^15.0.0",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.14",

@@ -1,9 +1,18 @@
 const express = require("express");
-
 const { UserController } = require("../controllers");
+const validateJWT = require("../middleware/validateToken");
+const { UserValidator } = require("../validators");
+const { validateRole } = require("../middleware/userMiddleware");
 const router = express.Router();
 
-router.post("/", UserController.create);
+// POST api-g8-backend/users
+router.post(
+  "/",
+  validateJWT,
+  UserValidator.createUser,
+  validateRole("Admin"),
+  UserController.create
+);
 
 router.get("/", UserController.findAll);
 

@@ -1,16 +1,30 @@
 // Update with your config settings.
+require("dotenv").config();
 
 // $ knex init  nos crea este archivo para las conexciones en 3 ambientess diferentes
 
+const HOST = process.env.HOST;
+const PORT = process.env.PORT;
+const USER_DB = process.env.USER_DB;
+const PASSWORD_DB = process.env.PASSWORD_DB;
+const DATABASE = process.env.DATABASE;
+
 module.exports = {
-  development: {
-    client: "postgresql",
-    connection: {
-      host: "castor.db.elephantsql.com",
+  /**
+   *  host: "castor.db.elephantsql.com",
       port: 5432,
       user: "mduzsiod",
       password: "rFY-9CkzU0AtSwbGRWNXFDGGPHNTh1fe",
       database: "mduzsiod",
+   */
+  development: {
+    client: "postgresql",
+    connection: {
+      host: HOST,
+      port: 5432,
+      user: USER_DB,
+      password: PASSWORD_DB,
+      database: DATABASE,
     },
     pool: {
       min: 2,

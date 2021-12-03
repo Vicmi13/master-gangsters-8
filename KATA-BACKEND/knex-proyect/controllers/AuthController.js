@@ -2,7 +2,7 @@ const { User } = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const privateKey = "secr3tk3yG81/12!@";
+const privateKey = process.env.PRIVATE_KEY;
 
 // Logeo
 /**
@@ -38,10 +38,11 @@ const login = async (req, res) => {
           completeName: `${first_name} ${last_name} ${second_last_name}`,
           id,
           rol: "Admin",
+          // exp: 120900121 EPOCH
         },
         privateKey,
         {
-          expiresIn: "20m",
+          expiresIn: "1m",
         }
       );
 

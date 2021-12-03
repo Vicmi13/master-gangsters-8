@@ -2,9 +2,9 @@ exports.up = async (knex) => {
   await knex.schema.createTable("users", (table) => {
     table.increments("id").primary();
 
-    table.string("first_name");
-    table.string("last_name");
-    table.string("second_last_name");
+    table.string("first_name"); // notNullable()
+    table.string("last_name"); // notNullable()
+    table.string("second_last_name"); // notNullable()
     table.string("phone_number");
     table.string("edad");
 

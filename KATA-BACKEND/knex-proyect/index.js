@@ -1,5 +1,7 @@
 const express = require("express");
 const mainRouter = require("./routes");
+require("dotenv").config(); // { path: '/custom/path/to/.env' }
+
 const { printtName, printTime } = require("./middleware/consolesMiddleware");
 
 const app = express();
