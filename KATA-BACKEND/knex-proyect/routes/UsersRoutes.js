@@ -10,7 +10,7 @@ router.post(
   "/",
   validateJWT,
   UserValidator.createUser,
-  validateRole("Admin"),
+  validateRole("Customer"),
   UserController.create
 );
 

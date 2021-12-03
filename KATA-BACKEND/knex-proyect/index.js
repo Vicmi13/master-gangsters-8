@@ -1,6 +1,7 @@
 const express = require("express");
 const mainRouter = require("./routes");
 require("dotenv").config(); // { path: '/custom/path/to/.env' }
+const { errors } = require("celebrate");
 
 const { printtName, printTime } = require("./middleware/consolesMiddleware");
 
@@ -23,6 +24,9 @@ console.log("variable de entorno", process.env.NODE_ENV);
 // Index de rutas
 mainRouter(app);
 
+// Handle celebrate errors
+
+app.use(errors());
 app.listen(PORT, () => {
   console.log(`SERVIDOR corriendo en puerto: ${PORT}`);
 });

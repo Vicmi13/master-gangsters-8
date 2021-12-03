@@ -13,14 +13,14 @@ const privateKey = process.env.PRIVATE_KEY;
  */
 
 const login = async (req, res) => {
-  const { email, password } = req.body; // 12121212121
+  const { email, password } = req.body;
 
   try {
     // 1.- Verificar que el usuario exista
     const userFound = await User.getByEmail(email);
     const passwordFromDb = userFound[0].password;
     // PENDIENTE  Regresar mensaje en caso de que no exista el usuario
-    console.log("userFound", userFound);
+    // console.log("userFound", userFound);
 
     // 2.- Si el usuario existe revisar que la contraseña proporcionada sea la correcta (bcrypt)
     const isPasswordEqual = await bcrypt.compare(password, passwordFromDb);
@@ -42,7 +42,7 @@ const login = async (req, res) => {
         },
         privateKey,
         {
-          expiresIn: "1m",
+          expiresIn: process.env.EXP_TIME,
         }
       );
 

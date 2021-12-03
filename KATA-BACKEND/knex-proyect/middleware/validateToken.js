@@ -19,9 +19,10 @@ const validateJWT = (req, res, next) => {
        * valida firma o palabra secreta
        */
       const jwtDecoded = jwt.verify(token, privateKey);
-      console.log("jwtDecoded", jwtDecoded);
+      console.log("jwtDecoded === ", jwtDecoded);
       const { rol } = jwtDecoded;
       req.rolUser = rol;
+      next();
     } catch (error) {
       console.log("error token", error);
       // error.message
@@ -30,8 +31,6 @@ const validateJWT = (req, res, next) => {
   } else {
     return res.status(403).json({ message: "Token not provided in header" });
   }
-
-  next();
 };
 
 module.exports = validateJWT;

@@ -9,7 +9,7 @@ const validateRole = (role) => {
     if (req.rolUser !== role) {
       return res
         .status(403)
-        .json({ message: "Access denied", error: "Error invalid rol" });
+        .json({ message: "Access denied", error: "Rol Invalid" });
     }
 
     next();
