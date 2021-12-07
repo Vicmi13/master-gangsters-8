@@ -1,5 +1,5 @@
 const { celebrate, Joi, errors, Segments } = require("celebrate");
-const enumRoles = require("../utils/RolesEnum");
+const RolesEnum = require("../utils/RolesEnum");
 
 module.exports = {
   createUser: celebrate({
@@ -11,12 +11,13 @@ module.exports = {
       age: Joi.string(),
       email: Joi.string(),
       password: Joi.string().required(),
-      role: Joi.string().required(),
-      //DUDA
-      rol: Joi.string().valid(enumRoles.join(",")),
+      //id_roles: Joi.string().required(),
+      id_roles: Joi.valid("Admin", "Customer", "Seller", "Invite").required(),
       is_active: Joi.boolean(),
       id_genres: Joi.number().required(),
       id_shoes: Joi.number().required(),
     }),
   }),
 };
+
+// { createUser : }

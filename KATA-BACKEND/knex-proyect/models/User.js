@@ -14,6 +14,7 @@ const columns = [
   "email",
   "id_genres",
   "id_shoes",
+  "id_roles",
   "is_active",
   "password",
 ];
@@ -36,6 +37,7 @@ User.findAllWithJoins = () => {
       // .join("tabla_foranea", "tablaActual.id_en_tu_tabla(nombre que sea)", "=", "tabla_foranea.columna_PK")
       .join("shoes", "users.id_shoes", "=", "shoes.shoe_id")
       .join("genres", "users.id_genres", "=", "genres.id")
+      .join("roles", "users.id_roles", "=", "roles.id")
       .select(
         "users.first_name",
         "users.last_name",
@@ -49,8 +51,9 @@ User.findAllWithJoins = () => {
         "shoes.description",
         "shoes.is_active as shoes_is_active",
         "shoes.quantity",
-        "genres.id",
-        "genres.value"
+        "genres.id as genre_id",
+        "genres.value as genre_value",
+        "roles.name as user_role"
       )
   );
 

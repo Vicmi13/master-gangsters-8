@@ -22,6 +22,7 @@ const validateJWT = (req, res, next) => {
       console.log("jwtDecoded === ", jwtDecoded);
       const { rol } = jwtDecoded;
       req.rolUser = rol;
+      req.languageUser = "Spanish";
       next();
     } catch (error) {
       console.log("error token", error);

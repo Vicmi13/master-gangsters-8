@@ -1,5 +1,15 @@
 const { User } = require("../models");
 const hashPassword = require("../utils/hashPassword");
+const ENUM_ROLES = require("../utils/RolesEnum");
+
+const getIdAssociateToRole = (name) => {
+  let roleId = 0;
+  ENUM_ROLES.forEach((value, i) => {
+    if (value === name) roleId = i + 1;
+  });
+  console.log("roleId", roleId);
+  return roleId;
+};
 
 const create = async (req, res) => {
   const {
@@ -11,13 +21,15 @@ const create = async (req, res) => {
     email,
     id_genres,
     id_shoes,
-    // optional
+    id_roles,
     is_active,
     password,
   } = req.body;
 
   try {
     const hashedPassword = await hashPassword(password);
+    const roleId = getIdAssociateToRole(id_roles);
+
     const newUser = {
       first_name,
       last_name,
@@ -27,11 +39,13 @@ const create = async (req, res) => {
       email,
       id_genres,
       id_shoes,
+      id_roles: roleId,
       is_active,
       password: hashedPassword,
     };
 
-    // const data = await User.create(newUser)
+    // const data = await User.create(newUser);
+
     return User.create(newUser)
       .then((data) => {
         console.log("result", data.rowCount);

@@ -4,6 +4,7 @@ const ShoesRoutes = require("../routes/ShoesRoutes");
 const GenresRoutes = require("../routes/GenreRoutes");
 const UsersRoutes = require("../routes/UsersRoutes");
 const AuthRoutes = require("../routes/AuthRoutes");
+const RolesRoutes = require("../routes/RolesRoutes");
 
 function mainRouter(app) {
   // instancia de Router
@@ -25,6 +26,7 @@ function mainRouter(app) {
   router.use("/genres", GenresRoutes);
   router.use("/shoes", ShoesRoutes);
   router.use("/users", UsersRoutes);
+  router.use("/roles", RolesRoutes);
   router.use("/auth", AuthRoutes);
 }
 
