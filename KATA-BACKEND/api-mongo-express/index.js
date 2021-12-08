@@ -9,6 +9,7 @@ app.get("/", (__, res) => {
   res.json({ message: "Backend running" });
 });
 
+// get/post localhost:3300/users
 app.use("/users", UserRouter);
 
 app.listen(PORT, () => {
