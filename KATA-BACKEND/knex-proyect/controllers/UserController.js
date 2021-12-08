@@ -7,7 +7,7 @@ const getIdAssociateToRole = (name) => {
   ENUM_ROLES.forEach((value, i) => {
     if (value === name) roleId = i + 1;
   });
-  console.log("roleId", roleId);
+  console.log("roleId ", roleId);
   return roleId;
 };
 
