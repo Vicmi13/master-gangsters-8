@@ -1,5 +1,14 @@
+require("dotenv").config();
+
 const express = require("express");
+const mongoose = require("mongoose");
+
 const UserRouter = require("./routes/UserRouter");
+
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("Mongo DB connected"))
+  .catch(() => console.log("Error in connection"));
 
 const app = express();
 const PORT = process.env.PORT || 3300;
