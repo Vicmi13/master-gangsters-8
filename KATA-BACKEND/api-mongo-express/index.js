@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const { json } = require("express");
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -12,6 +13,8 @@ mongoose
 
 const app = express();
 const PORT = process.env.PORT || 3300;
+
+app.use(express.json());
 
 // get localhost:3300
 app.get("/", (__, res) => {
