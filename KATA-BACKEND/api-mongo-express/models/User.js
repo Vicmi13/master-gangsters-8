@@ -5,9 +5,9 @@ const { Schema } = mongoose;
 // Se definen aqui los campos de nuesra tabla (Collection)
 const UserSchema = new Schema({
   name: String, // short hand
-  lastName: {
+  last_name: {
     type: String,
-    // required: true,
+    required: true,
   },
   email: {
     type: String,
@@ -21,7 +21,11 @@ const UserSchema = new Schema({
   role: {
     type: String,
     default: "USER",
-    enum: ["ADMIN", "USER", "SELLER"],
+    enum: ["ADMIN", "USER", "INVITE"],
+  },
+  is_active: {
+    type: Boolean,
+    default: true,
   },
 });
 

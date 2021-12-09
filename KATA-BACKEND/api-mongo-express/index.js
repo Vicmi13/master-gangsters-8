@@ -1,6 +1,5 @@
 require("dotenv").config();
 
-const { json } = require("express");
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -12,11 +11,13 @@ mongoose
   .catch(() => console.log("Error in connection"));
 
 const app = express();
+app.use(express.json());
+
 const PORT = process.env.PORT || 3300;
 
 // get localhost:3300
 app.get("/", (__, res) => {
-  res.json({ message: "Backend running" });
+  res.json({ message: "Backend APi-NOSQL G8 running " });
 });
 
 // get/post localhost:3300/users
