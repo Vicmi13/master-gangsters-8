@@ -14,8 +14,6 @@ mongoose
 const app = express();
 const PORT = process.env.PORT || 3300;
 
-app.use(express.json());
-
 // get localhost:3300
 app.get("/", (__, res) => {
   res.json({ message: "Backend running" });
