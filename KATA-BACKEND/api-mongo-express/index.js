@@ -2,8 +2,11 @@ require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const UserRouter = require("./routes/UserRouter");
+const ItemRouter = require("./routes/ItemRouter");
+const TicketRouter = require("./routes/TicketRouter");
 
 mongoose
   .connect(process.env.MONGO_URI)
@@ -12,6 +15,7 @@ mongoose
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const PORT = process.env.PORT || 3300;
 
@@ -22,6 +26,10 @@ app.get("/", (__, res) => {
 
 // get/post localhost:3300/users
 app.use("/users", UserRouter);
+
+app.use("/items", ItemRouter);
+
+app.use("/tickets", TicketRouter);
 
 app.listen(PORT, () => {
   console.log(`App running in PORT ${PORT}`);
