@@ -21,4 +21,10 @@ router.delete("/:idUser", UserController.deleteById);
 // DELETE LOGICO
 router.delete("/:idUser/soft-delete", UserController.softDeletebyId); // cambiar flag is_active
 
+/**
+ * Router de modelo Post
+ */
+
+router.post("/:id/posts", UserController.createPost);
+
 module.exports = router;

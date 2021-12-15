@@ -1,3 +1,4 @@
+const { Post } = require("../models/Post");
 const User = require("../models/User");
 
 module.exports = {
@@ -34,9 +35,9 @@ module.exports = {
     const { idUser } = req.params;
 
     try {
-      const userFound = await User.findById(idUser);
+      const userFound = await User.findById(idUser, { is_active: true });
       if (!userFound) {
-        res.status(404).json({ message: "User not found" });
+        res.status(404).json({ message: "User not found or inactive" });
       } else {
         res.status(200).json({
           message: "User found ",
@@ -104,6 +105,36 @@ module.exports = {
     } catch (error) {
       res.status(500).json({
         message: "Error update user",
+        error,
+      });
+    }
+  },
+
+  createPost: async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      // pasar param is_active: true
+      const userFound = await User.findById(id);
+      console.log("userFound", userFound);
+      if (!userFound) res.status(404).json({ message: "User not found" });
+
+      // crear comentario para ese usuario encontrado
+      const newPost = new Post(req.body);
+
+      //userFound.posts[0] = newPost
+      userFound.posts.push(newPost);
+
+      // guarda nuestro nuevo comentari
+      await userFound.save();
+
+      res.status(200).json({
+        message: "User post added successfully",
+        user: userFound,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "Error creating user post",
         error,
       });
     }

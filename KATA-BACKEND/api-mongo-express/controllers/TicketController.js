@@ -125,19 +125,20 @@ module.exports = {
       const taxPorcentage = 0.1;
 
       const subtotal = response.items.reduce((accumulator, item) => {
+        console.log("item", item);
         return accumulator + item.price;
       }, 0);
+
       const totalTaxes = subtotal.toFixed(2) * taxPorcentage;
       const total = subtotal + totalTaxes;
-
-      console.log("subtotal", subtotal.toFixed(2));
-      console.log("totalTaxes", totalTaxes);
-      console.log("total", total.toFixed(2));
+      // console.log("subtotal", subtotal.toFixed(2));
+      // console.log("totalTaxes", totalTaxes);
+      // console.log("total", total.toFixed(2));
 
       // 4 - Actualizar subtotal, taxes, total valores en el ticket
       const ticketUpdated = await Ticket.findByIdAndUpdate(
         idTicket,
-        { subtotal, total, taxes: totalTaxes },
+        { subtotal, total: total.toFixed(2), taxes: totalTaxes.toFixed(2) },
         { new: true }
       );
 

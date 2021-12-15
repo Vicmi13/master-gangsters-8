@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-// PENDIENTE CONEXION
+
+const { PostSchema } = require("./Post");
 
 // Se definen aqui los campos de nuesra tabla (Collection)
 const UserSchema = new Schema({
@@ -27,6 +28,7 @@ const UserSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  posts: [PostSchema], // array de post
 });
 
 const User = mongoose.model("User", UserSchema); // users
