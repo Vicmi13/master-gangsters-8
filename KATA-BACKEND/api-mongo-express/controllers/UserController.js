@@ -115,18 +115,35 @@ module.exports = {
 
     try {
       // pasar param is_active: true
-      const userFound = await User.findById(id);
+      const userFound = await User.findOne({ _id: id, is_active: true });
       console.log("userFound", userFound);
-      if (!userFound) res.status(404).json({ message: "User not found" });
+      if (!userFound)
+        res.status(404).json({ message: "User  inactive or not found" });
 
       // crear comentario para ese usuario encontrado
       const newPost = new Post(req.body);
+
+      /**
+       *
+       * NO HACER ESTO ya que
+       * al realizar esta operacion se guarda dentro
+       * de su propia collection posts
+       *
+       *  await newPost.save();
+       */
 
       //userFound.posts[0] = newPost
       userFound.posts.push(newPost);
 
       // guarda nuestro nuevo comentari
       await userFound.save();
+
+      /**
+       * create ===
+       *
+       * const newModel = new model(req.body)
+       * newModel.save()
+       */
 
       res.status(200).json({
         message: "User post added successfully",
@@ -137,6 +154,26 @@ module.exports = {
         message: "Error creating user post",
         error,
       });
+    }
+  },
+
+  findAllPosts: async (req, res) => {
+    const { id } = req.params;
+    console.log("id recover findAllPosts", id);
+    try {
+      const userFound = await User.findOne({ _id: id, is_active: true });
+      if (!userFound)
+        res.status(404).json({ message: "User  inactive or not found" });
+
+      const { last_name, posts } = userFound;
+
+      // PENDIENTE Validar posts es mayor a 0
+      res.status(200).json({
+        message: `Posts related to User ${userFound.name || ""} ${last_name}`,
+        posts: posts,
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Error recover user posts", error });
     }
   },
 };
