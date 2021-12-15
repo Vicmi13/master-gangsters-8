@@ -25,8 +25,16 @@ router.delete("/:idUser/soft-delete", UserController.softDeletebyId); // cambiar
  * Router de modelo Post
  */
 
+// Create
 router.post("/:id/posts", UserController.createPost);
 
+// Find all
 router.get("/:id/posts", UserController.findAllPosts);
+
+// Find one
+
+// Update one
+
+// Soft Delete
 
 module.exports = router;
