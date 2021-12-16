@@ -110,6 +110,11 @@ module.exports = {
     }
   },
 
+  /**
+   *
+   * Post controller
+   */
+
   createPost: async (req, res) => {
     const { id } = req.params;
 
@@ -167,6 +172,8 @@ module.exports = {
 
       const { last_name, posts } = userFound;
 
+      // BLOB binary large object
+
       // PENDIENTE Validar posts es mayor a 0
       res.status(200).json({
         message: `Posts related to User ${userFound.name || ""} ${last_name}`,
@@ -174,6 +181,93 @@ module.exports = {
       });
     } catch (error) {
       res.status(500).json({ message: "Error recover user posts", error });
+    }
+  },
+
+  findOnePostById: async (req, res) => {
+    const { id, idPost } = req.params;
+
+    try {
+      const userFound = await User.findOne({ _id: id, is_active: true });
+      if (!userFound)
+        res.status(404).json({ message: "User  inactive or not found" });
+
+      const postFound = userFound.posts.find(
+        (post) => post._id.toString() === idPost
+      );
+      if (postFound === undefined || !postFound.is_active) {
+        return res
+          .status(404)
+          .json({ message: "Post in user not found or inactive" });
+      }
+
+      res.status(200).json({
+        message: "Post in User",
+        post: postFound,
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Error recover one user post", error });
+    }
+  },
+
+  updateOnePost: async (req, res) => {
+    const { id, idPost } = req.params;
+
+    try {
+      const userFound = await User.findOne({ _id: id, is_active: true });
+      if (!userFound)
+        res.status(404).json({ message: "User  inactive or not found" });
+
+      const postFound = userFound.posts.find(
+        (post) => post._id.toString() === idPost
+      );
+      if (postFound === undefined || !postFound.is_active) {
+        return res
+          .status(404)
+          .json({ message: "Post in user not found or inactive" });
+      }
+
+      // set() por detrás ejecuta un tipo update
+      // mongo reconoce o identifica que se esta haciendo una
+      // actualizacion de un subdocumento de el (padre)
+      postFound.set(req.body);
+
+      await userFound.save();
+
+      res.status(200).json({
+        message: "Post updated successfully in user",
+        post: userFound,
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Error updated one user post", error });
+    }
+  },
+
+  softPostDelete: async (req, res) => {
+    const { id, idPost } = req.params;
+
+    try {
+      const userFound = await User.findOne({ _id: id, is_active: true });
+      if (!userFound)
+        res.status(404).json({ message: "User  inactive or not found" });
+
+      const postFound = userFound.posts.find(
+        (post) => post._id.toString() === idPost
+      );
+      if (postFound === undefined || !postFound.is_active) {
+        return res
+          .status(404)
+          .json({ message: "Post in user not found or inactive" });
+      }
+
+      postFound.set({ is_active: false });
+      await userFound.save();
+
+      res.status(200).json({
+        message: "Post in user deleted successfully ",
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Error deleted user post", error });
     }
   },
 };

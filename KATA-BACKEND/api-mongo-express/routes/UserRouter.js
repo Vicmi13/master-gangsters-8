@@ -32,9 +32,12 @@ router.post("/:id/posts", UserController.createPost);
 router.get("/:id/posts", UserController.findAllPosts);
 
 // Find one
+router.get("/:id/posts/:idPost", UserController.findOnePostById);
 
 // Update one
+router.patch("/:id/posts/:idPost", UserController.updateOnePost);
 
 // Soft Delete
+router.delete("/:id/posts/:idPost", UserController.softPostDelete);
 
 module.exports = router;
