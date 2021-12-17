@@ -1,6 +1,7 @@
 const express = require("express");
 const UserController = require("../controllers/UserController");
 const { multer } = require("../middlewares");
+const validateFile = require("../middlewares/validateFile");
 
 const router = express.Router();
 
@@ -8,7 +9,12 @@ const router = express.Router();
 router.get("/", UserController.findAll);
 
 // CREATE
-router.post("/", multer.single("profile_picture"), UserController.create);
+router.post(
+  "/",
+  multer.single("profile_picture"),
+  validateFile,
+  UserController.create
+);
 
 //FIND ONE
 router.get("/:idUser", UserController.findOneById);

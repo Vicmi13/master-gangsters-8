@@ -31,7 +31,7 @@ const UserSchema = new Schema({
   posts: [PostSchema], // array de post
   profile_picture: {
     type: String,
-    default: "../developer.jpeg",
+    // default: "../developer.jpeg",
   },
 });
 

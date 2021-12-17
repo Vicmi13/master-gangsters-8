@@ -19,13 +19,11 @@ module.exports = {
 
   create: async (req, res) => {
     try {
-      console.log("file with multer", req.file);
-
-      if (req.file) {
-        const url = await storage(req.file);
-        console.log("url file", url);
-        req.body.profile_picture = url;
-      }
+      // if (req.file) {
+      //   const url = await storage(req.file);
+      //   console.log("url file", url);
+      //   req.body.profile_picture = url;
+      // }
 
       const newUser = await User.create(req.body);
       res.status(201).json({
@@ -64,6 +62,12 @@ module.exports = {
 
   updateOneById: async (req, res) => {
     const id = req.params.idUser;
+
+    // if (req.file) {
+    //   const url = await storage(req.file);
+    //   console.log("url file", url);
+    //   req.body.profile_picture = url;
+    // }
 
     try {
       const userUpdated = await User.findByIdAndUpdate(id, req.body, {
