@@ -7,9 +7,12 @@ const cors = require("cors");
 const UserRouter = require("./routes/UserRouter");
 const ItemRouter = require("./routes/ItemRouter");
 const TicketRouter = require("./routes/TicketRouter");
+const config = require("./config");
+
+console.log("mongo_uri", config.mongo_uri);
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(config.mongo_uri)
   .then(() => console.log("Mongo DB connected"))
   .catch(() => console.log("Error in connection"));
 
