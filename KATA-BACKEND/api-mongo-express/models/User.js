@@ -29,7 +29,10 @@ const UserSchema = new Schema({
     default: true,
   },
   posts: [PostSchema], // array de post
-  // profile: String
+  profile_picture: {
+    type: String,
+    default: "../developer.jpeg",
+  },
 });
 
 const User = mongoose.model("User", UserSchema); // users

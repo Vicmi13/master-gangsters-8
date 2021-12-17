@@ -1,5 +1,6 @@
 const { Post } = require("../models/Post");
 const User = require("../models/User");
+const storage = require("../utils/storage");
 
 module.exports = {
   // key : value
@@ -18,9 +19,17 @@ module.exports = {
 
   create: async (req, res) => {
     try {
+      console.log("file with multer", req.file);
+
+      if (req.file) {
+        const url = await storage(req.file);
+        console.log("url file", url);
+        req.body.profile_picture = url;
+      }
+
       const newUser = await User.create(req.body);
       res.status(201).json({
-        message: "User created ",
+        message: "User created sucessfully",
         user: newUser,
       });
     } catch (error) {

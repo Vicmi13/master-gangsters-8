@@ -1,17 +1,17 @@
 const { Storage } = require("@google-cloud/storage");
+const { PROJECT_ID, BUCKET_FIREBASE } = process.env;
 
 const storage = new Storage({
-  projectId: "bucket-api-g8",
+  projectId: PROJECT_ID,
   keyFilename: "service.json",
 });
 
-const bucket = storage.bucket("bucket-api-g8.appspot.com");
+const bucket = storage.bucket(BUCKET_FIREBASE);
 
 module.exports = (file) => {
   return new Promise((resolve, reject) => {
     if (!file) reject("El archivo no se encontró");
-
-    console.log("file");
+    console.log("file in storage", file);
     const newFileName = `${file.originalname}_${Date.now()}`;
 
     // Se indicar a través de file() que tenemos un archivo
@@ -36,5 +36,7 @@ module.exports = (file) => {
       const url = `https://storage.googleapis.com/${bucket.name}/${fileUpload.name}`;
       resolve(url);
     });
+
+    blobStream.end(file.buffer);
   });
 };

@@ -1,4 +1,5 @@
 const Ticket = require("../models/Ticket");
+const storage = require("../utils/storage");
 
 module.exports = {
   findAll: async (req, res) => {
