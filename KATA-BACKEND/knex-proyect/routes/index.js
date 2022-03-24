@@ -27,6 +27,7 @@ function mainRouter(app) {
   router.use("/shoes", ShoesRoutes);
   router.use("/users", UsersRoutes);
   router.use("/roles", RolesRoutes);
+
   router.use("/auth", AuthRoutes);
 }
 

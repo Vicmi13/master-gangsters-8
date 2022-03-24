@@ -1,8 +1,12 @@
 const { User } = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { OAuth2Client } = require("google-auth-library");
 
 const privateKey = process.env.PRIVATE_KEY;
+const GCLIENT_ID =
+  "333130553471-bb13ta8f3159dcda4mkc7igsj0aerla6.apps.googleusercontent.com";
+const googleClient = new OAuth2Client(GCLIENT_ID);
 
 // Logeo
 /**
@@ -62,4 +66,35 @@ const login = async (req, res) => {
    */
 };
 
-module.exports = { login };
+const authGoogle = async (req, res) => {
+  const { tokenId } = req.body;
+
+  try {
+    const { payload } = await googleClient.verifyIdToken({
+      idToken: tokenId,
+      audience: GCLIENT_ID,
+    });
+
+    const { email } = payload;
+    // 1.- Verificar que el usuario exista
+    const userFound = await User.getByEmail(email);
+    console.log("userFound", userFound);
+    /**
+     * CREATE ==== SIGN IN  => CREAR USUARIO
+     * o UPDATE === LOGIN => EXISTE USUARIO
+     *
+     * UPSERT (SQL NATIVO, KNEX, SEQUELIZE o MOMNGOOSE)
+     */
+
+    if (!userFound.length) {
+      res.json({ message: "User not found in our system" });
+    } else {
+      // GENERATE TOKEN
+      res.json({ message: "User FOUND in our system" });
+    }
+  } catch (error) {
+    console.log("Error login with google ", error);
+  }
+};
+
+module.exports = { login, authGoogle };

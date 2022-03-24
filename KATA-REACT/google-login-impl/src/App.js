@@ -1,7 +1,11 @@
 import { GoogleLogin } from "react-google-login";
 import { useState } from "react";
+import axios from "axios";
+
 import "./App.css";
 
+const GCLIENT_ID =
+  "333130553471-bb13ta8f3159dcda4mkc7igsj0aerla6.apps.googleusercontent.com";
 const App = () => {
   /**
    * Cuando se setea una llave
@@ -17,22 +21,31 @@ const App = () => {
     // {email: vicm@, name: victor, profileImage: 'URL-imagen'}
   );
 
-  const GCLIENT_ID =
-    "333130553471-bb13ta8f3159dcda4mkc7igsj0aerla6.apps.googleusercontent.com";
-
   console.log("loginInfo", loginInfo);
-  const handlerSuccessLoggedIn = (response) => {
-    console.log("loggeo exitoso", response);
-    if (response) {
-      localStorage.setItem(
-        "loginInfo",
-        JSON.stringify({
-          name: "Victor Torres",
-          email: "victor@hotmail.com",
-          imageURL: "url...",
-        })
-      );
+
+  const handlerSuccessLoggedIn = async (response) => {
+    const URL_BACKEND = "http://localhost:8080/api/backend-g8/v1/auth/google";
+    console.log("response", response);
+    const { tokenId } = response;
+    console.log("tokenId ", tokenId);
+    try {
+      const { data } = await axios.post(URL_BACKEND, { tokenId });
+      console.log("googleAuthResponse", data);
+      // message: login google...
+    } catch (error) {
+      console.log("error al autenticar con Google", error);
     }
+
+    // if (response) {
+    //   localStorage.setItem(
+    //     "loginInfo",
+    //     JSON.stringify({
+    //       name: "Victor Torres",
+    //       email: "victor@hotmail.com",
+    //       imageURL: "url...",
+    //     })
+    //   );
+    // }
   };
 
   const handlerErrorLoggedIn = (error) => {

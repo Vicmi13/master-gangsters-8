@@ -1,7 +1,10 @@
 const express = require("express");
-const mainRouter = require("./routes");
-require("dotenv").config(); // { path: '/custom/path/to/.env' }
 const { errors } = require("celebrate");
+const cors = require("cors");
+
+const mainRouter = require("./routes");
+
+require("dotenv").config(); // { path: '/custom/path/to/.env' }
 
 const { printtName, printTime } = require("./middleware/consolesMiddleware");
 
@@ -13,6 +16,7 @@ const PORT = process.env.PORT || 8080;
 
 // MIDDLEWARES
 app.use(express.json());
+app.use(cors());
 
 // // DESDE REACT se ejecutar GET  localhost:8080
 app.get("/", printTime, printtName, (req, res) =>
