@@ -10,6 +10,7 @@ const TicketRouter = require("./routes/TicketRouter");
 const config = require("./config");
 
 console.log("mongo_uri", config.mongo_uri);
+console.log("env", process.env.NODE_ENV)
 
 mongoose
   .connect(config.mongo_uri)

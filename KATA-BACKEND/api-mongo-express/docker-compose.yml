@@ -1,0 +1,29 @@
+# version de docker compose 3 
+version: "3"
+
+# se definen los servicios que se van a trabajar
+services:
+  web:
+    # build ejecuta el docker file para crear la imagen y despues crear el container
+    build: .
+    # ports: sustituyen la instruccion -p 3000:3001 para el docker-compose
+    ports: 
+      - "3001:3000"
+    #depends_on nos indica de que servicio dependemos para levantar este   
+    depends_on:
+      - db
+    volumes:
+      #.: Donde estoy ubicado actualmente
+      #:/app Donde se definio el WORKDIR
+      - .:/app
+    
+  db:
+    image: mongo
+    restart: always
+    expose:
+      - "27017"
+    volumes:
+      - mongodata:/data/db
+
+volumes:
+  mongodata:
