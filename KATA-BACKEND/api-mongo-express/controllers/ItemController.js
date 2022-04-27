@@ -5,10 +5,13 @@ module.exports = {
     try {
       // const allItem = await Item.find();
       const allActiveItems = await Item.find({ is_active: true });
-      if (!allActiveItems.length) res.json({ message: "No items found" });
-      res.status(200).json({ message: "All Items ", items: allActiveItems });
+      if (!allActiveItems.length)
+        return res.json({ message: "No items found" });
+      return res
+        .status(200)
+        .json({ message: "All Items ", items: allActiveItems });
     } catch (error) {
-      res.status(400).json({
+      return res.status(400).json({
         message: "Error recover Items",
         error,
       });
@@ -18,12 +21,12 @@ module.exports = {
   create: async (req, res) => {
     try {
       const newItem = await Item.create(req.body);
-      res.status(201).json({
+      return res.status(201).json({
         message: "Item created ",
         Item: newItem,
       });
     } catch (error) {
-      res.status(400).json({
+      return res.status(400).json({
         message: "Error creating Item",
         error,
       });
@@ -37,16 +40,16 @@ module.exports = {
       const ItemFound = await Item.findById(idItem);
       console.log("ItemFound", ItemFound);
       if (!ItemFound) {
-        res.status(404).json({ message: "Item not found" });
+        return res.status(404).json({ message: "Item not found" });
       } else {
-        res.status(200).json({
+        return res.status(200).json({
           message: "Item found ",
           item: ItemFound,
         });
       }
     } catch (error) {
       console.log(error);
-      res.status(500).json({
+      return res.status(500).json({
         message: "Error Item not found",
         error,
       });
@@ -60,12 +63,12 @@ module.exports = {
       const itemUpdated = await Item.findByIdAndUpdate(id, req.body, {
         new: true,
       });
-      res.status(200).json({
+      return res.status(200).json({
         message: "Item updated successfully ",
         item: itemUpdated,
       });
     } catch (error) {
-      res.status(500).json({
+      return res.status(500).json({
         message: "Error update Item",
         error,
       });
@@ -78,12 +81,12 @@ module.exports = {
     try {
       const itemDeleted = await Item.findByIdAndDelete(id);
       console.log("item deleted", itemDeleted);
-      res.status(200).json({
+      return res.status(200).json({
         message: "Item deleted successfully ",
         item: itemDeleted._id,
       });
     } catch (error) {
-      res.status(500).json({
+      return res.status(500).json({
         message: "Error delete Item",
         error,
       });
@@ -98,12 +101,12 @@ module.exports = {
         { is_active: false },
         { new: true }
       );
-      res.status(200).json({
+      return res.status(200).json({
         message: "Item soft deleted successfully ",
         item: itemSoftDeleted,
       });
     } catch (error) {
-      res.status(500).json({
+      return res.status(500).json({
         message: "Error update Item",
         error,
       });

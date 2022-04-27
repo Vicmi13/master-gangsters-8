@@ -9,19 +9,19 @@ const ItemRouter = require("./routes/ItemRouter");
 const TicketRouter = require("./routes/TicketRouter");
 const config = require("./config");
 
-console.log("CONNECTION mongo_uri: ", config.mongo_uri);
-console.log("env", process.env.NODE_ENV)
+console.log("connection mongo_uri: ", config.mongo_uri);
+console.log("env: ", process.env.NODE_ENV)
 
 mongoose
   .connect(config.mongo_uri)
-  .then(() => console.log("Mongo DB connected"))
+  .then(() => console.log("Mongo DB connected SUCCESSFULLY"))
   .catch((error) => console.log("Error in connection", error));
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-const PORT = process.env.PORT || 3300;
+const PORT = process.env.PORT || 3001;
 
 // get localhost:3300
 app.get("/", (__, res) => {

@@ -6,12 +6,13 @@ module.exports = {
     try {
       // const allTicket = await Ticket.find();
       const allActiveTickets = await Ticket.find({ is_active: true });
-      if (!allActiveTickets.length) res.json({ message: "No Tickets found" });
-      res
+      if (!allActiveTickets.length)
+        return res.json({ message: "No Tickets found" });
+      return res
         .status(200)
         .json({ message: "All Tickets ", tickets: allActiveTickets });
     } catch (error) {
-      res.status(400).json({
+      return res.status(400).json({
         message: "Error recover Tickets",
         error,
       });
@@ -21,12 +22,12 @@ module.exports = {
   create: async (req, res) => {
     try {
       const newTicket = await Ticket.create(req.body);
-      res.status(201).json({
+      return res.status(201).json({
         message: "Ticket created ",
         Ticket: newTicket,
       });
     } catch (error) {
-      res.status(400).json({
+      return res.status(400).json({
         message: "Error creating Ticket",
         error,
       });
@@ -39,16 +40,16 @@ module.exports = {
     try {
       const TicketFound = await Ticket.findById(idTicket);
       if (!TicketFound) {
-        res.status(404).json({ message: "Ticket not found" });
+        return res.status(404).json({ message: "Ticket not found" });
       } else {
-        res.status(200).json({
+        return res.status(200).json({
           message: "Ticket found ",
           Ticket: TicketFound,
         });
       }
     } catch (error) {
       console.log(error);
-      res.status(500).json({
+      return res.status(500).json({
         message: "Error Ticket not found",
         error,
       });
@@ -62,12 +63,12 @@ module.exports = {
       const TicketUpdated = await Ticket.findByIdAndUpdate(id, req.body, {
         new: true,
       });
-      res.status(200).json({
+      return res.status(200).json({
         message: "Ticket updated successfully ",
         Ticket: TicketUpdated,
       });
     } catch (error) {
-      res.status(500).json({
+      return res.status(500).json({
         message: "Error update Ticket",
         error,
       });
@@ -80,12 +81,12 @@ module.exports = {
     try {
       const TicketDeleted = await Ticket.findByIdAndDelete(id);
       console.log("Ticket deleted", TicketDeleted);
-      res.status(200).json({
+      return res.status(200).json({
         message: "Ticket deleted successfully ",
         Ticket: TicketDeleted._id,
       });
     } catch (error) {
-      res.status(500).json({
+      return res.status(500).json({
         message: "Error delete Ticket",
         error,
       });
@@ -100,12 +101,12 @@ module.exports = {
         { is_active: false },
         { new: true }
       );
-      res.status(200).json({
+      return res.status(200).json({
         message: "Ticket soft deleted successfully ",
         Ticket: TicketSoftDeleted,
       });
     } catch (error) {
-      res.status(500).json({
+      return res.status(500).json({
         message: "Error update Ticket",
         error,
       });
@@ -125,6 +126,7 @@ module.exports = {
       // 3 - Hacer operaciones para obtener  total
       const taxPorcentage = 0.1;
 
+      console.log('response', response)
       const subtotal = response.items.reduce((accumulator, item) => {
         console.log("item", item);
         return accumulator + item.price;
@@ -144,12 +146,12 @@ module.exports = {
       );
 
       // 5 - Regresar ticket actualizado
-      res.status(200).json({
+      return res.status(200).json({
         message: "Ticket with taxes calculated ",
         ticket: ticketUpdated,
       });
     } catch (error) {
-      res.status(500).json({
+      return res.status(500).json({
         message: "Error calculate taxes in Ticket",
         error,
       });
