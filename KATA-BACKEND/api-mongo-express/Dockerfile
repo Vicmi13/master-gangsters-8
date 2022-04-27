@@ -19,6 +19,9 @@ COPY package.json ./
 # instalar las librerias necesarias para que corra el proyecto
 RUN npm install
 
+# Instala nodemon de manera global
+RUN npm install -g nodemon
+
 # Se va a copiar todo donde estas ubicado a la raiz del contenedor 
  COPY  . .
 
@@ -28,8 +31,11 @@ EXPOSE 3001
 
 
 # El comando para correr el proyecto con node
-CMD ["node", "index.js"]
+#CMD ["node", "index.js"]
 
-# CMD["nodemon", '']
+# El comando para correr el proyecto con nodemon
+CMD[ "nodemon", "-L", "--watch", ".", "index.js" ]
 
  
+ # limpiar cache en build docker 
+ # build --no-cache -t name_container .

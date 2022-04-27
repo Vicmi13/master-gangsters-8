@@ -9,13 +9,13 @@ const ItemRouter = require("./routes/ItemRouter");
 const TicketRouter = require("./routes/TicketRouter");
 const config = require("./config");
 
-console.log("mongo_uri", config.mongo_uri);
+console.log("CONNECTION mongo_uri: ", config.mongo_uri);
 console.log("env", process.env.NODE_ENV)
 
 mongoose
   .connect(config.mongo_uri)
   .then(() => console.log("Mongo DB connected"))
-  .catch(() => console.log("Error in connection"));
+  .catch((error) => console.log("Error in connection", error));
 
 const app = express();
 app.use(express.json());

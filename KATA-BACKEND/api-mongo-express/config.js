@@ -2,11 +2,12 @@ const { NODE_ENV, ATLAS_USER, ATLAS_PASSWORD } = process.env;
 
 const databases = {
   dev: {
-    
-    mongo_uri: "mongodb+srv://27017:g8-docker",
+    // mongodb://localhost:27017
+    mongo_uri: "mongodb+srv://27017:mi_base_local",
   },
-  stage: {
-    mongo_uri: `mongodb+srv://${ATLAS_USER}:${ATLAS_PASSWORD}@cluster0.xjjjt.mongodb.net/api-g8-v1-staging?retryWrites=true&w=majority`,
+  stage: {  
+             // mongodb+srv://vicman:<password>@cluster0.jq3nd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+    mongo_uri: `mongodb+srv://${ATLAS_USER}:${ATLAS_PASSWORD}@cluster0.jq3nd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
   },
   prod: {
     mongo_uri: `mongodb+srv://${ATLAS_USER}:${ATLAS_PASSWORD}@cluster0.xjjjt.mongodb.net/api-g8-v1?retryWrites=true&w=majority`,

@@ -27,3 +27,8 @@ services:
 
 volumes:
   mongodata:
+
+
+
+    # docker-compose build Crea la imagen cargando el .yml correspondiente 
+    # docker-compose up Levanta los dos contenedores/proyectos para que funcione en sincronia
