@@ -9,7 +9,7 @@ const ItemRouter = require("./routes/ItemRouter");
 const TicketRouter = require("./routes/TicketRouter");
 const config = require("./config");
 
-console.log("connection mongo_uri: ", config.mongo_uri);
+console.log("connection mongo_uri ======= ", config.mongo_uri);
 console.log("env: ", process.env.NODE_ENV)
 
 mongoose

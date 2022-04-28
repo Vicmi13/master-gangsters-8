@@ -4,31 +4,49 @@ version: "3"
 # se definen los servicios que se van a trabajar
 services:
   web:
-    # build ejecuta el docker file para crear la imagen y despues crear el container
+    # build ejecuta el docker file para crear la imagen y despues crear el container donde estoy posicionado
     build: .
+   
     # ports: sustituyen la instruccion -p 3000:3001 para el docker-compose
+    # hace un puente entre el\ puerto 3000 de mi local con 3001 de mi container de docker
     ports: 
-      - "3001:3000"
+      - 3000:3000
+
+  
     #depends_on nos indica de que servicio dependemos para levantar este   
     depends_on:
       - db
+  
     volumes:
       #.: Donde estoy ubicado actualmente
       #:/app Donde se definio el WORKDIR
       - .:/app
     
+    container_name: backend
+    
+    # environment:
+    #   WAIT_HOSTS: mongo:27017
+    
   db:
     image: mongo
+    container_name: mongo
     restart: always
-    expose:
-      - "27017"
+    ports: 
+      - 27017:27017
+    # expose:
+    #   - "27017"
+
     volumes:
-      - mongodata:/data/db
+       - mongoinfo:/data/db
 
 volumes:
-  mongodata:
+   mongoinfo:
 
 
+# ================ COMANDOS ===================
 
-    # docker-compose build Crea la imagen cargando el .yml correspondiente 
-    # docker-compose up Levanta los dos contenedores/proyectos para que funcione en sincronia
+# docker-compose build Crea la imagen cargando el .yml correspondiente 
+# docker-compose up Levanta los dos contenedores/proyectos para que funcione en sincronia
+# docker-compose up -d --build Para hacer el build de la imagen por cualquier cambio que se haya ejecutado en nuestro codigo 
+# docker-compose down Detiene los container creados por docker-compose
+# docker volume ls Muestra los volumenes creado para persistir la data
