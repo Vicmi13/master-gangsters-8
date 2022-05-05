@@ -6,7 +6,7 @@
  * 4- Send message to queue
  * 
  * 
- * Consumer also known as producer
+ * Publisher also known as producer
  *
  */
 
