@@ -5,7 +5,7 @@ module.exports = {
   // key : value
   findAll: async (req, res) => {
     try {
-      // const allUser = await User.find();
+      // const allUser = await User.find()
       const allActiveUsers = await User.find({ is_active: true });
       res.status(200).json({ message: "All users ", users: allActiveUsers });
     } catch (error) {
