@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h3>Proyecto react con class components</h3>
+        <h3>Proyecto react con class components 🙌</h3>
         <img src="" alt="" />
         <Counter counter={handleCounter} />
         <ShowInfoCounter counterProp={counterValue} />
