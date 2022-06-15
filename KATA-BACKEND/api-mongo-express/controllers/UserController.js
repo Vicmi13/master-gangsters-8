@@ -6,7 +6,7 @@ module.exports = {
   // key : value
   findAll: async (req, res) => {
     try {
-      // const allUser = await User.find();
+      // const allUser = await User.find()
       const allActiveUsers = await User.find({ is_active: true });
       return res
         .status(200)
